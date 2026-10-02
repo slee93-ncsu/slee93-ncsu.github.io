@@ -12,6 +12,12 @@
       "url": "assets/CV_SeungminLee.pdf",
       "icon": "<i class=\"fas fa-file-pdf\" title=\"CV (PDF)\"></i>",
       "target": "_blank"
+    },
+    {
+      "type": "linkedin",
+      "url": "https://www.linkedin.com/in/seungmin-lee-b4a486294",
+      "icon": "<i class=\"fab fa-linkedin\" title=\"LinkedIn\"></i>",
+      "target": "_blank"
     }
   ]
 }
