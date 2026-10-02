@@ -101,7 +101,7 @@ function loadProfileInfo() {
     const profileInfoContainer = document.querySelector('.profile-info');
     if (!profileInfoContainer) return;
 
-    fetch(profileJsonPath)
+    fetch(profileJsonPath, { cache: 'no-cache' })
         .then(response => response.json())
         .then(data => {
             // Clear existing content
@@ -179,7 +179,7 @@ function loadPublications() {
     // Clear existing publications
     publicationsList.innerHTML = '';
     
-    fetch(publicationsJsonPath)
+    fetch(publicationsJsonPath, { cache: 'no-cache' })
         .then(response => response.json())
         .then(publications => {
             publications.forEach(pub => {
