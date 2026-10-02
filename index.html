@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seungmin Lee</title>
+    <meta name="description" content="Seungmin Lee, Ph.D. student at North Carolina State University researching building–grid resilience, machine learning for energy systems, and building electrification.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-info">
+                    <!-- Profile info is loaded from data/profile-info.json -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#about" class="active">Biography</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#honors">Honors</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">Biography</h2>
+                <div class="about-content">
+                    <p>I am a Ph.D. student in Design (Building Energy Systems) at <a href="https://www.ncsu.edu/">North Carolina State University</a>, advised by <b>Prof. Soolyeon Cho</b>, and an M.S. student in Electrical and Computer Engineering. I am currently a Graduate Intern with the Grid Automation and Controls Group at the National Laboratory of the Rockies (NLR).<br><br>
+
+                    My research studies how buildings and electric grids interact under normal, extreme, and recovery conditions. I integrate building and distribution-system models through co-simulation and develop data-driven methods for forecasting weather-induced power outages, understanding restoration dynamics, and identifying heat-pump loads at the distribution-feeder level.<br><br>
+
+                    Before my Ph.D., I worked as a researcher at the Korea Research Institute of Eco-Environmental Architecture and the Korea Institute of Energy Research. There I led energy performance assessments of buildings and contributed to national research on zero-energy building policy and geothermal heat pump design.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="research" class="section">
+            <div class="container">
+                <h2 class="section-title">Research Interests</h2>
+                <div class="research-areas">
+                    <div class="research-area">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Building–Grid Resilience</h3>
+                        <ul class="research-list">
+                            <li><strong>Outage Forecasting:</strong> Forecasting rare, large-scale weather-induced power outages with deep time-series models.</li>
+                            <li><strong>Restoration Dynamics:</strong> Co-simulating buildings and distribution grids to study recovery, thermal behavior, and cold load pickup.</li>
+                        </ul>
+                    </div>
+                    <div class="research-area">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Machine Learning for Energy Systems</h3>
+                        <ul class="research-list">
+                            <li><strong>Time-Series Analytics:</strong> Data-driven modeling for power systems and building energy applications.</li>
+                            <li><strong>Grid-Interactive Buildings:</strong> Learning-based modeling and control of building loads and HVAC systems.</li>
+                        </ul>
+                    </div>
+                    <div class="research-area">
+                        <i class="fas fa-plug"></i>
+                        <h3>Building Electrification</h3>
+                        <ul class="research-list">
+                            <li><strong>Heat-Pump Load Identification:</strong> Identifying heat-pump loads at the distribution-feeder level from electricity and weather data.</li>
+                            <li><strong>Distribution Planning:</strong> Load profiles for integration into transmission and distribution system models.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="publications" class="section">
+            <div class="container">
+                <h2 class="section-title">Publications</h2>
+                <div class="publication-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="journal">Journal &amp; Thesis</button>
+                    <button class="filter-btn" data-filter="conference">Conference</button>
+                    <button class="filter-btn" data-filter="first-author">First Author</button>
+                </div>
+                <div class="publications-list">
+                    <!-- Publications are loaded from data/publications.json -->
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Research Projects</h2>
+                <div class="honors-list">
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">KEA</span></div>
+                        <div class="honor-content">
+                            <h3>Development of EMS with Optimal Control Algorithm for Energy Efficiency Improvement in Commercial Building Using AI and Twin Technology</h3>
+                            <p>Korea Energy Agency, funded by the Ministry of Land, Infrastructure and Transport</p>
+                            <p>Developed an AI-based optimal control model using building and environmental data to automate EMS in factory buildings, targeting energy savings, operational efficiency, and anomaly detection.</p>
+                        </div>
+                    </div>
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">NRF</span></div>
+                        <div class="honor-content">
+                            <h3>Optimal Design Analysis of Geothermal Heat Pump Systems for High-Density City Zones Based on Detailed Modeling and Simulation</h3>
+                            <p>National Research Foundation of Korea (No. 2016R1C1B2011097)</p>
+                            <p>Proposed an optimal design method for large-scale urban buildings through detailed TRNSYS simulations (thermal storage, design conditions, groundwater effects). Related outputs: P3, C5.</p>
+                        </div>
+                    </div>
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">KEA</span></div>
+                        <div class="honor-content">
+                            <h3>Appropriate Targets for Mandatory Zero-Energy Buildings and Plans to Link the Emission Trading System</h3>
+                            <p>Korea Energy Agency, funded by the Ministry of Land, Infrastructure and Transport</p>
+                            <p>Related outputs: P1, P2, C2, C3, C4.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Research Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Graduate Intern @ National Laboratory of the Rockies (NLR)</h3>
+                                <p class="timeline-date">May 2026 - Now</p>
+                                <p>Grid Automation and Controls Group, Golden, CO</p>
+                                <p>Identifying heat-pump loads at the distribution-feeder level with data-driven methods and developing load profiles for transmission and distribution system models.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Graduate Research Assistant @ North Carolina State University</h3>
+                                <p class="timeline-date">Aug. 2023 - Now</p>
+                                <p>Building–grid coupling through co-simulation of building and distribution-system models, building load dynamics (thermal behavior, CLPU) and their grid impacts, and data-driven modeling of grid-interactive buildings.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Postgraduate Intern @ Korea Institute of Energy Research (KIER)</h3>
+                                <p class="timeline-date">Sep. 2022 - May 2023</p>
+                                <p>Low-carbon energy-efficient remodeling research; cluster analysis of residential occupancy schedules using machine learning.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Postgraduate Researcher @ Inha University</h3>
+                                <p class="timeline-date">Mar. 2020 - Dec. 2020</p>
+                                <p>NRF geothermal heat pump system design project; led the study published as P3 and presented as C5.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Researcher → Senior Researcher @ Korea Research Institute of Eco-Environmental Architecture (KRIEA)</h3>
+                                <p class="timeline-date">Mar. 2015 - Feb. 2018</p>
+                                <p>Led energy performance assessments of 62 buildings and analyzed central and individual HVAC systems.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Graduate Researcher @ Korea Institute of Energy Research (KIER)</h3>
+                                <p class="timeline-date">Mar. 2013 - Feb. 2015</p>
+                                <p>Assessed energy performance of 17 residential buildings and appraised insulation and airtightness through on-site inspection.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>Ph.D. @ North Carolina State University</h3>
+                                <p class="timeline-date">Aug. 2023 - Now</p>
+                                <p>Design (Building Energy System)</p>
+                                <p>Advisor: Prof. Soolyeon Cho</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>M.S. @ North Carolina State University</h3>
+                                <p class="timeline-date">Aug. 2025 - Now</p>
+                                <p>Electrical and Computer Engineering</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>M.E. @ Inha University</h3>
+                                <p class="timeline-date">Mar. 2013 - Aug. 2019</p>
+                                <p>Architectural Engineering</p>
+                                <p>Advisor: Prof. Euijong Kim</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="edu-text">
+                                <h3>B.S. @ Konyang University</h3>
+                                <p class="timeline-date">Mar. 2009 - Feb. 2013</p>
+                                <p>Architecture</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="honors" class="section">
+            <div class="container">
+                <h2 class="section-title">Honors &amp; Awards</h2>
+                <div class="honors-list">
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">2026</span></div>
+                        <div class="honor-content">
+                            <h3>ASHRAE Graduate Grant-In-Aid (2026–2027)</h3>
+                            <p>ASHRAE</p>
+                            <p>Up to $10,000 in support of graduate research in building energy and HVAC systems.</p>
+                        </div>
+                    </div>
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">2023</span></div>
+                        <div class="honor-content">
+                            <h3>Mansour Doctoral Fellowship</h3>
+                            <p>NC State University</p>
+                            <p>$10,000; one of 25 recipients among international Ph.D. candidates (2023–2024).</p>
+                        </div>
+                    </div>
+                    <div class="honor-item">
+                        <div class="honor-year"><span class="year-highlight">2023</span></div>
+                        <div class="honor-content">
+                            <h3>University Graduate Fellowship</h3>
+                            <p>NC State University</p>
+                            <p>$4,000 (2023–2024).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Seungmin Lee. Built with <a href="https://github.com/dl-m9/academic-homepage-modernism">academic-homepage-modernism</a>.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Update copyright year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile navigation horizontal scroll handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks) {
+                const checkScrollable = () => {
+                    const isScrollable = navLinks.scrollWidth > navLinks.clientWidth;
+                    document.querySelector('nav .container').classList.toggle('has-scroll', isScrollable);
+                };
+
+                checkScrollable();
+                window.addEventListener('resize', checkScrollable);
+
+                const activeLink = navLinks.querySelector('a.active');
+                if (activeLink) {
+                    const activeLi = activeLink.closest('li');
+                    if (activeLi) {
+                        setTimeout(() => {
+                            const scrollPos = activeLi.offsetLeft - (navLinks.clientWidth / 2) + (activeLi.offsetWidth / 2);
+                            navLinks.scrollLeft = Math.max(0, scrollPos);
+                        }, 100);
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
