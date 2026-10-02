@@ -1,0 +1,272 @@
+[
+  {
+    "number": "P5",
+    "title": "Forecasting Rare, Large-Scale Weather-Induced Power Outages Using Temporal Fusion Transformers: A Multi-County Study for Building Energy Resilience",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Wenyuan Tang, Soolyeon Cho",
+    "venue": "Science and Technology for the Built Environment",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "Under Review",
+        "class": "preprint-tag"
+      }
+    ]
+  },
+  {
+    "number": "P4",
+    "title": "From Outage Duration to Recovery Pathways: A Review of Integrated Building–Grid Restoration Dynamics",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Wenyuan Tang, Soolyeon Cho",
+    "venue": "Expected 2026",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "In Preparation",
+        "class": "preprint-tag"
+      }
+    ]
+  },
+  {
+    "number": "P3",
+    "title": "Proposition of Design Capacity of Borehole Heat Exchangers for Use in the Schematic-Design Stage",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Seunghoon Park, Yongsung Jang, Euijong Kim",
+    "venue": "Energies, 14(4): 822, 2021",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "Energies 2021",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "P2",
+    "title": "Analysis of GHG Reduction in Apartment Buildings by 2030 According to Various Prediction Scenarios",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Euijong Kim",
+    "venue": "Journal of Korea Institute of Architectural Sustainable Environment and Building Systems, 13(6): 515–526, 2019",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KIAEBS 2019",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "P1",
+    "title": "Market Acceptability of the ZEB Certification System for Public Buildings According to the 2025 Roadmap",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Jinho Kim, Gwangsu Shin, Euijong Kim",
+    "venue": "Journal of Korea Institute of Architectural Sustainable Environment and Building Systems, 12(6): 557–566, 2018",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KIAEBS 2018",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "T1",
+    "title": "Evaluation of GHG Reduction in Residential Buildings According to Proposed Scenarios",
+    "authors": "<strong><u>Seungmin Lee</u></strong>",
+    "venue": "Master's Thesis, Inha University, 2018",
+    "type": "journal",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "Thesis",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C13",
+    "title": "Forecasting High-Impact, Low-Probability Power Outages with Temporal Fusion Transformers: A Case Study of Wake County",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Yujin Kim, Soolyeon Cho",
+    "venue": "2026 ASHRAE Winter Conference, Las Vegas, NV, USA",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "ASHRAE 2026",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C12",
+    "title": "Model Predictive Coordinated Control for Grid-Interactive Residential Building with Energy Recovery Ventilator, PV, and Battery Energy Storage System",
+    "authors": "Juwan Ha, <strong><u>Seungmin Lee</u></strong>, Yujin Kim, Soolyeon Cho",
+    "venue": "2026 ASHRAE Winter Conference, Las Vegas, NV, USA",
+    "type": "conference",
+    "isFirstAuthor": false,
+    "tags": [
+      {
+        "text": "ASHRAE 2026",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C11",
+    "title": "Ontology-Based Semantic Modeling of HVAC Systems in the Office Building: A Foundation for Scalable Control and Digital Twin Integration",
+    "authors": "Yujin Kim, Juwan Ha, <strong><u>Seungmin Lee</u></strong>, Soolyeon Cho",
+    "venue": "2026 ASHRAE Winter Conference, Las Vegas, NV, USA",
+    "type": "conference",
+    "isFirstAuthor": false,
+    "tags": [
+      {
+        "text": "ASHRAE 2026",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C10",
+    "title": "Improving Energy and Data Efficiency in Factory Buildings: A Physics-Informed Neural Networks-Based Model Predictive Control (PINNs-Based MPC) Approach",
+    "authors": "Juwan Ha, <strong><u>Seungmin Lee</u></strong>, Yujin Kim, Soolyeon Cho",
+    "venue": "2025 ASHRAE Annual Conference, Phoenix, AZ, USA",
+    "type": "conference",
+    "isFirstAuthor": false,
+    "tags": [
+      {
+        "text": "ASHRAE 2025",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C9",
+    "title": "A Review of Federated Learning Applications in Building Energy Management",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Soolyeon Cho",
+    "venue": "US-Korea Conference on Science, Technology, and Entrepreneurship (UKC), San Francisco, CA, USA, 2024",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "UKC 2024",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C8",
+    "title": "Development of Heat Pump Prediction Model Based on Limited Experimental Data in Factory Building",
+    "authors": "Juwan Ha, <strong><u>Seungmin Lee</u></strong>, Soolyeon Cho",
+    "venue": "UKC 2024, San Francisco, CA, USA",
+    "type": "conference",
+    "isFirstAuthor": false,
+    "tags": [
+      {
+        "text": "UKC 2024",
+        "class": "venue-tag"
+      },
+      {
+        "text": "Poster",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C7",
+    "title": "An Empirical Analysis of Korean Household Appliance Use Patterns: Using a National Time Use Survey Dataset",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Jonghoon Kim, Soolyeon Cho",
+    "venue": "UKC 2023, Dallas, TX, USA",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "UKC 2023",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C6",
+    "title": "Fast Load Prediction Model of Chiller Using Bayesian Optimization",
+    "authors": "Juwan Ha, Byeongmo Seo, <strong><u>Seungmin Lee</u></strong>, Soolyeon Cho",
+    "venue": "UKC 2023, Dallas, TX, USA",
+    "type": "conference",
+    "isFirstAuthor": false,
+    "tags": [
+      {
+        "text": "UKC 2023",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C5",
+    "title": "A Study on the Calculation of Heat Transfer Rate per Borehole According to the Bore Field Configuration",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Seunghoon Park, Euijong Kim",
+    "venue": "Korea Institute of Architectural Sustainable Environment and Building Systems, Chungju, Korea, 2020",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KIAEBS 2020",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C4",
+    "title": "Analysis of GHG Reduction Potential for New Apartment Houses",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Euijong Kim",
+    "venue": "Korean Solar Energy Society, Daegu, Korea, 2019",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KSES 2019",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C3",
+    "title": "Relationship Between the Existing Mandatory Regulations and the ZEB Certification Roadmap",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Euijong Kim",
+    "venue": "Korea Institute of Architectural Sustainable Environment and Building Systems, Incheon, Korea, 2018",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KIAEBS 2018",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C2",
+    "title": "Attainability Analysis of ZEB Certification System Obligation Roadmap",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Seunghoon Park, Euijong Kim",
+    "venue": "Korean Solar Energy Society, Seoul, Korea, 2018",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "KSES 2018",
+        "class": "venue-tag"
+      }
+    ]
+  },
+  {
+    "number": "C1",
+    "title": "A Study on the Applicability of Cool Roof in the Domestic Climate According to Energy Consumption Analysis",
+    "authors": "<strong><u>Seungmin Lee</u></strong>, Hyangin Jang, Cheolyong Jang, Seungjik Suh",
+    "venue": "The Society of Air-Conditioning and Refrigerating Engineers of Korea, Seoul, Korea, 2013",
+    "type": "conference",
+    "isFirstAuthor": true,
+    "tags": [
+      {
+        "text": "SAREK 2013",
+        "class": "venue-tag"
+      }
+    ]
+  }
+]
