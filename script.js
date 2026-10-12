@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load publications data from JSON file
     loadPublications();
+    loadRelatedPublications();
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -89,13 +90,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Path from the current page to the site root. Pages in a subfolder set
+// <body data-root="../"> so shared data and assets resolve correctly.
+function siteRoot() {
+    return document.body.dataset.root || '';
+}
+
 // Function to load profile information
 function loadProfileInfo() {
-    let profileJsonPath = 'data/profile-info.json';
-    let isSubpage = window.location.pathname.includes('/pages/');
-    if (isSubpage) {
-        profileJsonPath = '../data/profile-info.json';
-    }
+    const root = siteRoot();
+    const isSubpage = root !== '';
+    const profileJsonPath = root + 'data/profile-info.json';
 
     // Get profile-info container
     const profileInfoContainer = document.querySelector('.profile-info');
@@ -128,7 +133,7 @@ function loadProfileInfo() {
                 const anchor = document.createElement('a');
                 // Adjust URL paths for subpages
                 if (isSubpage && link.url.startsWith('assets/')) {
-                    anchor.href = '../' + link.url;
+                    anchor.href = root + link.url;
                 } else {
                     anchor.href = link.url;
                 }
@@ -143,7 +148,7 @@ function loadProfileInfo() {
                 // Fix SVG icon paths for subpages
                 let iconHtml = link.icon;
                 if (isSubpage && link.type === 'dblp') {
-                    iconHtml = iconHtml.replace('src="assets/', 'src="../assets/');
+                    iconHtml = iconHtml.replace('src="assets/', 'src="' + root + 'assets/');
                 }
                 
                 anchor.innerHTML = iconHtml;
@@ -156,8 +161,7 @@ function loadProfileInfo() {
             // Update profile image if there's a profile-image container
             const profileImageContainer = document.querySelector('.profile-image img');
             if (profileImageContainer && data.profileImage) {
-                profileImageContainer.src = isSubpage ? 
-                    '../' + data.profileImage : data.profileImage;
+                profileImageContainer.src = root + data.profileImage;
                 profileImageContainer.alt = data.name;
             }
         })
@@ -166,85 +170,100 @@ function loadProfileInfo() {
         });
 }
 
-// Function to load publications from JSON
-function loadPublications() {
-    let publicationsJsonPath = 'data/publications.json';
-    if (window.location.pathname.includes('/pages/')) {
-        publicationsJsonPath = '../data/publications.json';
+// Build the card for one publication entry from data/publications.json
+function createPublicationElement(pub) {
+    const pubElement = document.createElement('div');
+    const classes = ['publication', pub.type];
+    if (pub.isFirstAuthor) classes.push('first-author');
+    pubElement.className = classes.join(' ');
+
+    const numberElement = document.createElement('span');
+    numberElement.className = 'pub-number';
+    numberElement.textContent = pub.number;
+
+    const contentElement = document.createElement('div');
+    contentElement.className = 'pub-content';
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = pub.title;
+    contentElement.appendChild(titleElement);
+
+    const authorsElement = document.createElement('p');
+    authorsElement.className = 'authors';
+    authorsElement.innerHTML = pub.authors;
+    contentElement.appendChild(authorsElement);
+
+    if (pub.venue) {
+        const venueElement = document.createElement('p');
+        venueElement.className = 'venue';
+        venueElement.textContent = pub.venue;
+        contentElement.appendChild(venueElement);
     }
 
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'pub-tags';
+    pub.tags.forEach(tag => {
+        if (tag.link) {
+            const tagLink = document.createElement('a');
+            tagLink.href = tag.link;
+            tagLink.className = `tag ${tag.class}`;
+            tagLink.textContent = tag.text;
+            if (!tag.link.startsWith('#')) {
+                tagLink.setAttribute('target', '_blank');
+            }
+            tagsContainer.appendChild(tagLink);
+        } else {
+            const tagSpan = document.createElement('span');
+            tagSpan.className = `tag ${tag.class}`;
+            tagSpan.textContent = tag.text;
+            tagsContainer.appendChild(tagSpan);
+        }
+    });
+    contentElement.appendChild(tagsContainer);
+
+    pubElement.appendChild(numberElement);
+    pubElement.appendChild(contentElement);
+    return pubElement;
+}
+
+function fetchPublications() {
+    return fetch(siteRoot() + 'data/publications.json', { cache: 'no-cache' })
+        .then(response => response.json());
+}
+
+// Function to load publications from JSON
+function loadPublications() {
     const publicationsList = document.querySelector('.publications-list');
     if (!publicationsList) return;
-    
-    // Clear existing publications
+
     publicationsList.innerHTML = '';
-    
-    fetch(publicationsJsonPath, { cache: 'no-cache' })
-        .then(response => response.json())
+
+    fetchPublications()
         .then(publications => {
             publications.forEach(pub => {
-                const pubElement = document.createElement('div');
-                const classes = ['publication', pub.type];
-                if (pub.isFirstAuthor) classes.push('first-author');
-                pubElement.className = classes.join(' ');
-                
-                // Create publication number
-                const numberElement = document.createElement('span');
-                numberElement.className = 'pub-number';
-                numberElement.textContent = pub.number;
-                
-                // Create publication content container
-                const contentElement = document.createElement('div');
-                contentElement.className = 'pub-content';
-                
-                // Add title
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = pub.title;
-                contentElement.appendChild(titleElement);
-                
-                // Add authors
-                const authorsElement = document.createElement('p');
-                authorsElement.className = 'authors';
-                authorsElement.innerHTML = pub.authors;
-                contentElement.appendChild(authorsElement);
-                
-                // Add venue if it exists
-                if (pub.venue) {
-                    const venueElement = document.createElement('p');
-                    venueElement.className = 'venue';
-                    venueElement.textContent = pub.venue;
-                    contentElement.appendChild(venueElement);
-                }
-                
-                // Add tags
-                const tagsContainer = document.createElement('div');
-                tagsContainer.className = 'pub-tags';
-                
-                pub.tags.forEach(tag => {
-                    if (tag.link) {
-                        const tagLink = document.createElement('a');
-                        tagLink.href = tag.link;
-                        tagLink.className = `tag ${tag.class}`;
-                        tagLink.textContent = tag.text;
-                        // Add target="_blank" for links
-                        if (!tag.link.startsWith('#')) {
-                            tagLink.setAttribute('target', '_blank');
-                        }
-                        tagsContainer.appendChild(tagLink);
-                    } else {
-                        const tagSpan = document.createElement('span');
-                        tagSpan.className = `tag ${tag.class}`;
-                        tagSpan.textContent = tag.text;
-                        tagsContainer.appendChild(tagSpan);
-                    }
+                publicationsList.appendChild(createPublicationElement(pub));
+            });
+        })
+        .catch(error => {
+            console.error('Error loading publications data:', error);
+        });
+}
+
+// Fill each <div class="related-publications" data-pubs="P5,C13"> with the
+// listed entries from data/publications.json, in the order given.
+function loadRelatedPublications() {
+    const containers = document.querySelectorAll('.related-publications[data-pubs]');
+    if (containers.length === 0) return;
+
+    fetchPublications()
+        .then(publications => {
+            const byNumber = new Map(publications.map(pub => [pub.number, pub]));
+            containers.forEach(container => {
+                container.innerHTML = '';
+                container.dataset.pubs.split(',').map(id => id.trim()).forEach(id => {
+                    const pub = byNumber.get(id);
+                    if (pub) container.appendChild(createPublicationElement(pub));
                 });
-                
-                contentElement.appendChild(tagsContainer);
-                
-                // Combine elements and add to publications list
-                pubElement.appendChild(numberElement);
-                pubElement.appendChild(contentElement);
-                publicationsList.appendChild(pubElement);
             });
         })
         .catch(error => {
@@ -348,8 +367,9 @@ function makeAllLinksOpenInNewTab() {
     // Loop through each link
     links.forEach(link => {
         const href = link.getAttribute('href');
-        // Skip navigation links (links that start with #) and links without href
-        if (href && !href.startsWith('#')) {
+        // Skip in-page anchors (#...), links without href, and the top menu,
+        // whose links move between pages of this site
+        if (href && !href.startsWith('#') && !link.closest('nav')) {
             // Set target to _blank to open in a new tab
             link.setAttribute('target', '_blank');
         }
