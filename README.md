@@ -9,7 +9,7 @@ This is a static site (no build step) based on the
 
 | What                                   | Where                                              |
 | -------------------------------------- | -------------------------------------------------- |
-| Name, affiliation, email/CV links      | `data/profile-info.json`                           |
+| Name, affiliation, icon links, header text links (e.g. Research) | `data/profile-info.json` |
 | Publications                           | `data/publications.json`                           |
 | Biography, research, projects, experience, education, honors | `index.html` (one `<section>` each) |
 | CV PDF                                 | `assets/CV_SeungminLee.pdf`                        |

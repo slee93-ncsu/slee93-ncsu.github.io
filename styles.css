@@ -2073,3 +2073,31 @@ footer {
         font-size: 0.98rem;
     }
 }
+
+/* Less space below the contact icons in the header */
+header {
+    padding-bottom: 1.75rem;
+}
+
+/* Small text link next to the contact icons (e.g. Research) */
+.contact-info a.header-text-link {
+    width: auto;
+    height: auto;
+    align-self: center;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    background-color: #eaf4f9;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.contact-info a.header-text-link:hover {
+    background-color: var(--primary-strong);
+    color: #fff;
+}
+
+.contact-info a.header-text-link span {
+    margin-left: 0.3rem;
+}

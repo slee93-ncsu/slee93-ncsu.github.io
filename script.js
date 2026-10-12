@@ -163,6 +163,21 @@ function loadProfileInfo() {
                 contactInfo.appendChild(linkContainer);
             });
             
+            // Small text links next to the icons (e.g. the Research page).
+            // Relative URLs are resolved from the site root.
+            (data.headerLinks || []).forEach(link => {
+                const anchor = document.createElement('a');
+                anchor.className = 'header-text-link';
+                anchor.href = /^[a-z]+:/i.test(link.url) ? link.url : root + link.url;
+                anchor.setAttribute('data-same-tab', '');
+                anchor.textContent = link.text;
+                const arrow = document.createElement('span');
+                arrow.setAttribute('aria-hidden', 'true');
+                arrow.textContent = '→';
+                anchor.appendChild(arrow);
+                contactInfo.appendChild(anchor);
+            });
+
             profileInfoContainer.appendChild(contactInfo);
             
             // Update profile image if there's a profile-image container
