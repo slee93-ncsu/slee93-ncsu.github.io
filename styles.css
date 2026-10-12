@@ -2488,3 +2488,14 @@ header {
 .chart-pair + .body-text {
     margin-top: 1.25rem;
 }
+
+.body-note {
+    font-size: 0.875rem;
+    color: var(--light-text);
+    line-height: 1.55;
+}
+
+.data-table td[rowspan] {
+    vertical-align: top;
+    font-weight: 600;
+}
