@@ -22,28 +22,7 @@
     </header>
 
     <div class="container sidebar-layout">
-    <nav class="side-nav">
-        <ul class="nav-links">
-            <li><a href="../">Home</a></li>
-            <li>
-                <a href="#resiliency">Building–Grid Resiliency <span class="nav-status">Planned</span></a>
-                <ul class="sub-links">
-                    <li><a href="#resiliency-review">Review</a></li>
-                    <li><a href="#single-house">Single House Level</a></li>
-                    <li><a href="#feeder-level">Feeder Level</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#outage-prediction">Power Outage Prediction <span class="nav-status">Planned</span></a>
-                <ul class="sub-links">
-                    <li><a href="#single-county">Single County</a></li>
-                    <li><a href="#multi-county">Multi County</a></li>
-                </ul>
-            </li>
-            <li><a href="#datacenter">Datacenter <span class="nav-status">Planned</span></a></li>
-            <li><a href="#hvac-control">AI-Based HVAC Optimal Control</a></li>
-        </ul>
-    </nav>
+    <nav class="side-nav" data-current="overview" aria-label="Research topics"></nav>
 
     <main class="sidebar-main">
         <section id="overview" class="section">
@@ -52,138 +31,8 @@
                 <div class="about-content">
                     <p>A closer look at my research on how buildings and electric grids interact under normal, extreme, and recovery conditions, covering completed, ongoing, and planned work.</p>
                 </div>
-            </div>
-        </section>
-
-        <!--
-            Each topic is a <section class="section"> with an id that matches its
-            side-menu link, and a status badge in its title (status-completed,
-            status-ongoing, or status-planned). Subtopics are
-            <section class="subsection"> inside it.
-            Write content inside <div class="about-content">. To list publications,
-            add <div class="related-publications publications-list" data-pubs="P5,C13"></div>
-            (numbers from data/publications.json).
-        -->
-
-        <section id="resiliency" class="section">
-            <div class="container">
-                <h2 class="section-title">Building–Grid Resiliency <span class="status-badge status-planned">Planned</span></h2>
-                <p class="planned-note">Details coming soon.</p>
-                <div class="subtopic-chips">
-                    <span id="resiliency-review" class="chip">Review</span>
-                    <span id="single-house" class="chip">Single House Level</span>
-                    <span id="feeder-level" class="chip">Feeder Level</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="outage-prediction" class="section">
-            <div class="container">
-                <h2 class="section-title">Power Outage Prediction <span class="status-badge status-planned">Planned</span></h2>
-                <p class="planned-note">Details coming soon.</p>
-                <div class="subtopic-chips">
-                    <span id="single-county" class="chip">Single County</span>
-                    <span id="multi-county" class="chip">Multi County</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="datacenter" class="section">
-            <div class="container">
-                <h2 class="section-title">Datacenter <span class="status-badge status-planned">Planned</span></h2>
-                <p class="planned-note">Details coming soon.</p>
-            </div>
-        </section>
-
-        <section id="hvac-control" class="section">
-            <div class="container">
-                <h2 class="section-title">AI-Based HVAC Optimal Control <span class="status-badge status-completed">Completed</span></h2>
-
-                <p class="project-title">EMS with an Optimal Control Algorithm for Energy-Efficient Commercial Buildings Using AI and Digital Twin Technology</p>
-                <div class="meta-chips">
-                    <span class="chip"><i class="fas fa-landmark"></i> KEIT · MOTIE</span>
-                    <span class="chip"><i class="far fa-calendar"></i> 2021 – 2024</span>
-                    <span class="chip"><i class="fas fa-handshake"></i> Inter Electric · Korea Univ. · NC State BETLab</span>
-                </div>
-
-                <p class="lead">At a manufacturing plant in South Carolina, artificial neural networks (ANNs) predict HVAC energy use, and an optimizer computes the setpoints that reduce energy while keeping indoor conditions within comfort limits. As the project's international partner, NC State BETLab carried out this U.S. demonstration.</p>
-
-                <div class="site-facts">
-                    <div class="site-fact"><i class="fas fa-industry"></i><span class="fact-value">Manufacturing plant</span><span class="fact-label">South Carolina, USA · built 1998</span></div>
-                    <div class="site-fact"><i class="fas fa-temperature-high"></i><span class="fact-value">Climate zone 3A</span><span class="fact-label">Warm-humid; cooling-dominated</span></div>
-                    <div class="site-fact"><i class="fas fa-fan"></i><span class="fact-value">1,374.5 tons</span><span class="fact-label">Cooling capacity: chillers, GMUs, RTUs, DLHPs</span></div>
-                    <div class="site-fact"><i class="fas fa-network-wired"></i><span class="fact-value">BACnet toolbox</span><span class="fact-label">PyTorch + CasADi/IPOPT on an isolated network</span></div>
-                </div>
-
-                <h3 class="block-title">Control system</h3>
-                <div class="system-diagram">
-                    <div class="sys-box sys-input">
-                        <h4><i class="fas fa-database"></i> BAS data</h4>
-                        <ul>
-                            <li>Space temperature &amp; setpoint</li>
-                            <li>Supply fan &amp; capacity status</li>
-                            <li>Discharge air temperature</li>
-                            <li>Outdoor air damper, occupancy</li>
-                            <li>Outdoor temperature &amp; humidity, time</li>
-                        </ul>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box">
-                        <h4><i class="fas fa-brain"></i> ANN models</h4>
-                        <p>Predict hourly heating and cooling energy from 10 selected inputs</p>
-                        <p class="sys-meta">PyTorch · ASHRAE Guideline 14: CV(RMSE) ≤ 15%, NMBE ±10%</p>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box sys-highlight">
-                        <h4><i class="fas fa-sliders-h"></i> Optimizer</h4>
-                        <p>Minimizes a cost function under comfort constraints at every time step</p>
-                        <p class="sys-meta">CasADi + IPOPT, with the ANN converted to a symbolic function</p>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box sys-output">
-                        <h4><i class="fas fa-building"></i> BAS</h4>
-                        <p>Receives the optimal setpoints and runs the HVAC units</p>
-                        <p class="sys-meta">BACnet + TCP/IP · isolated network</p>
-                    </div>
-                </div>
-                <p class="sys-note">Input variables were chosen by correlation with heating or cooling energy (R² &gt; 0.7, or |r| &gt; 0.3 as a secondary criterion), with outdoor conditions and time added to capture weather and daily patterns.</p>
-
-                <h3 class="block-title">Measured energy savings</h3>
-                <div class="compare-grid">
-                    <figure class="compare-chart">
-                        <figcaption><span class="compare-title">Cooling</span> <span class="compare-period">Jul 11 – Aug 11, 2024</span><span class="compare-method">Outdoor-temperature-based setpoint scheduling</span></figcaption>
-                        <div class="bar-row" title="Baseline: 92,564 kWh">
-                            <span class="bar-label">Baseline</span>
-                            <div class="bar-track"><div class="bar bar-baseline" style="width: 100%"></div></div>
-                            <span class="bar-value">92,564 kWh</span>
-                        </div>
-                        <div class="bar-row" title="Toolbox control: 80,403 kWh (13.1% less)">
-                            <span class="bar-label">Toolbox control</span>
-                            <div class="bar-track"><div class="bar bar-optimal" style="width: 86.9%"></div></div>
-                            <span class="bar-value">80,403 kWh</span>
-                        </div>
-                        <p class="compare-saving">−13.1% energy</p>
-                        <p class="compare-note">Plant operating constraints ruled out full ANN control in summer, so the toolbox adjusted the cooling setpoint with outdoor temperature.</p>
-                    </figure>
-                    <figure class="compare-chart">
-                        <figcaption><span class="compare-title">Heating</span> <span class="compare-period">Dec 23, 2024 – Jan 17, 2025</span><span class="compare-method">ANN-based optimal control</span></figcaption>
-                        <div class="bar-row" title="Baseline: 14,993 kWh">
-                            <span class="bar-label">Baseline</span>
-                            <div class="bar-track"><div class="bar bar-baseline" style="width: 100%"></div></div>
-                            <span class="bar-value">14,993 kWh</span>
-                        </div>
-                        <div class="bar-row" title="ANN control: 11,217 kWh (25.2% less)">
-                            <span class="bar-label">ANN control</span>
-                            <div class="bar-track"><div class="bar bar-optimal" style="width: 74.8%"></div></div>
-                            <span class="bar-value">11,217 kWh</span>
-                        </div>
-                        <p class="compare-saving">−25.2% energy</p>
-                    </figure>
-                </div>
-
-                <div class="callout">
-                    <i class="fas fa-cloud-showers-heavy"></i>
-                    <p><b>Lesson learned:</b> a January 2025 winter storm sharply raised prediction error, showing that model-predictive building control needs extreme-weather data in training.</p>
+                <div class="research-cards">
+                    <!-- Cards are generated from data/research-topics.js -->
                 </div>
             </div>
         </section>
@@ -196,6 +45,7 @@
         </div>
     </footer>
 
+    <script src="../data/research-topics.js"></script>
     <script src="../script.js"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();

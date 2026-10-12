@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datacenter | Seungmin Lee</title>
+    <meta name="description" content="Datacenter: research by Seungmin Lee.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-root="../../">
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-info">
+                    <!-- Profile info is loaded from data/profile-info.json -->
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container sidebar-layout">
+    <nav class="side-nav" data-current="datacenter" aria-label="Research topics"></nav>
+
+    <main class="sidebar-main">
+        <section id="datacenter" class="section">
+            <div class="container">
+                <h2 class="section-title">Datacenter <span class="status-badge status-planned">Planned</span></h2>
+                <p class="planned-note">Details coming soon.</p>
+            </div>
+        </section>
+    </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Seungmin Lee. Built with <a href="https://github.com/dl-m9/academic-homepage-modernism">academic-homepage-modernism</a>.</p>
+        </div>
+    </footer>
+
+    <script src="../../data/research-topics.js"></script>
+    <script src="../../script.js"></script>
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

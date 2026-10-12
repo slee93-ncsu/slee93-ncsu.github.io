@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Build research menus and cards first so the nav handlers below see them
+    renderResearchNav();
+    renderResearchCards();
+
     // Load profile information
     loadProfileInfo();
 
@@ -88,6 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Highlight the right menu item when the page opens mid-way (e.g. via #anchor)
+    window.dispatchEvent(new Event('scroll'));
 });
 
 // Path from the current page to the site root. Pages in a subfolder set
@@ -428,3 +435,96 @@ function setupLinkObserver() {
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
 } 
+const RESEARCH_STATUS_LABELS = { completed: 'Completed', ongoing: 'Ongoing', planned: 'Planned' };
+
+// Fill <nav class="side-nav" data-current="..."> on research pages from
+// window.RESEARCH_TOPICS (data/research-topics.js). data-current is a topic id
+// or "overview". Links within the current page are #anchors so the scroll
+// highlighting works; links to other pages point at their folders.
+function renderResearchNav() {
+    const nav = document.querySelector('.side-nav[data-current]');
+    if (!nav || !window.RESEARCH_TOPICS) return;
+
+    const root = siteRoot();
+    const current = nav.dataset.current;
+    const ul = document.createElement('ul');
+    ul.className = 'nav-links';
+
+    const addLink = (parent, href, text, options = {}) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = href;
+        a.textContent = text;
+        if (options.current) a.classList.add('current');
+        if (options.status === 'planned') {
+            const tag = document.createElement('span');
+            tag.className = 'nav-status';
+            tag.textContent = RESEARCH_STATUS_LABELS.planned;
+            a.append(' ', tag);
+        }
+        li.appendChild(a);
+        parent.appendChild(li);
+        return li;
+    };
+
+    addLink(ul, root || './', 'Home');
+    addLink(ul, current === 'overview' ? '#overview' : root + 'research/', 'Overview', { current: current === 'overview' });
+
+    window.RESEARCH_TOPICS.forEach(topic => {
+        const isCurrent = topic.id === current;
+        const pageHref = root + 'research/' + topic.id + '/';
+        const li = addLink(ul, isCurrent ? '#' + topic.id : pageHref, topic.title, { current: isCurrent, status: topic.status });
+        if (topic.subtopics && topic.subtopics.length > 0) {
+            const sub = document.createElement('ul');
+            sub.className = 'sub-links';
+            topic.subtopics.forEach(st => {
+                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title);
+            });
+            li.appendChild(sub);
+        }
+    });
+
+    nav.innerHTML = '';
+    nav.appendChild(ul);
+}
+
+// Fill <div class="research-cards"> on the overview page with one card per topic.
+function renderResearchCards() {
+    const container = document.querySelector('.research-cards');
+    if (!container || !window.RESEARCH_TOPICS) return;
+
+    const root = siteRoot();
+    container.innerHTML = '';
+    window.RESEARCH_TOPICS.forEach(topic => {
+        const card = document.createElement('a');
+        card.className = 'research-card';
+        card.href = root + 'research/' + topic.id + '/';
+        card.setAttribute('data-same-tab', '');
+
+        const head = document.createElement('div');
+        head.className = 'research-card-head';
+        const title = document.createElement('h3');
+        title.textContent = topic.title;
+        const badge = document.createElement('span');
+        badge.className = 'status-badge status-' + topic.status;
+        badge.textContent = RESEARCH_STATUS_LABELS[topic.status] || topic.status;
+        head.append(title, badge);
+
+        const summary = document.createElement('p');
+        summary.textContent = topic.summary;
+
+        card.append(head, summary);
+        if (topic.subtopics && topic.subtopics.length > 0) {
+            const chips = document.createElement('div');
+            chips.className = 'subtopic-chips';
+            topic.subtopics.forEach(st => {
+                const chip = document.createElement('span');
+                chip.className = 'chip';
+                chip.textContent = st.title;
+                chips.appendChild(chip);
+            });
+            card.appendChild(chips);
+        }
+        container.appendChild(card);
+    });
+}

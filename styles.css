@@ -1965,3 +1965,71 @@ footer {
     margin-top: 1.5rem;
     font-weight: 500;
 }
+
+/* Research overview cards */
+.research-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.research-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: #fff;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.research-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 14px rgba(111, 173, 202, 0.2);
+    text-decoration: none;
+}
+
+.research-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.research-card h3 {
+    font-size: 1.05rem;
+    color: var(--primary-color);
+}
+
+.research-card .status-badge {
+    margin-left: 0;
+    flex-shrink: 0;
+}
+
+.research-card p {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    line-height: 1.55;
+}
+
+/* Current page in the research side menu */
+.side-nav .nav-links a.current {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+@media (min-width: 769px) {
+    .side-nav .nav-links a.current::after {
+        width: 3px;
+        height: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .research-cards {
+        grid-template-columns: 1fr;
+    }
+}
