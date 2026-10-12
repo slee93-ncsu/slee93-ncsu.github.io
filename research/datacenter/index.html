@@ -6,7 +6,7 @@
     <title>Data Center Thermal Analysis | Seungmin Lee</title>
     <meta name="description" content="Inlet-temperature analysis and short-term forecasting in a GPU-intensive data center: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../styles.css?v=20261012b">
+    <link rel="stylesheet" href="../../styles.css?v=20261012d">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -49,30 +49,9 @@
                 <h4 class="finding-title" id="finding-location"><span class="finding-num">1</span>Location, not power, sets which nodes run warm</h4>
                 <p class="body-text">Node-to-node differences in monthly mean inlet temperature were explained step by step. Power and job placement barely help; adding the node's position in the room, above all its height in the rack, explains most of the variation, and the pattern holds even for racks left out of fitting (R² 0.531).</p>
                 <div class="chart-pair">
-                    <figure class="doc-figure chart-box">
-                    <div class="model-bars">
-                        <div class="bar-row" title="Power only: R² 0.049">
-                            <span class="bar-label">Power only</span>
-                            <div class="bar-track"><div class="bar bar-baseline" style="width: 4.9%"></div></div>
-                            <span class="bar-value">0.049</span>
-                        </div>
-                        <div class="bar-row" title="Power + job placement: R² 0.105">
-                            <span class="bar-label">Power + job placement</span>
-                            <div class="bar-track"><div class="bar bar-baseline" style="width: 10.5%"></div></div>
-                            <span class="bar-value">0.105</span>
-                        </div>
-                        <div class="bar-row" title="Power + location: R² 0.604">
-                            <span class="bar-label">Power + location</span>
-                            <div class="bar-track"><div class="bar bar-optimal" style="width: 60.4%"></div></div>
-                            <span class="bar-value">0.604</span>
-                        </div>
-                        <div class="bar-row" title="Power + job placement + location: R² 0.606">
-                            <span class="bar-label">All three</span>
-                            <div class="bar-track"><div class="bar bar-optimal" style="width: 60.6%"></div></div>
-                            <span class="bar-value">0.606</span>
-                        </div>
-                    </div>
-                        <figcaption>Share of node-to-node variation in monthly mean inlet temperature explained (R²). Adding location lifts it from 0.049 to 0.604; job placement adds little.</figcaption>
+                    <figure class="doc-figure">
+                        <a href="img/model-r2.png"><img src="img/model-r2.png" alt="Grouped bar chart of R² for four models. Power only: 0.049 monthly, 0.025 on unseen racks. Power + job placement: 0.105 and 0.077. Power + location: 0.604 and 0.531. Full model: 0.606 and 0.504." loading="lazy"></a>
+                        <figcaption>Share of node-to-node variation explained (R²). Adding location lifts it from 0.049 to 0.604, and it holds on racks left out of fitting (orange); job placement adds little.</figcaption>
                     </figure>
                     <figure class="doc-figure">
                         <a href="img/vertical-profile.png"><img src="img/vertical-profile.png" alt="Line chart of adjusted inlet-temperature deviation by vertical slot position within a rack, z = 0 to 19. The profile is J-shaped: it falls from about −0.3&nbsp;°C at z = 0 to a minimum of about −1.8&nbsp;°C at z = 3, then rises steadily to about +2.4&nbsp;°C at z = 19. The power + location model and the full model with job-placement variables overlap almost exactly." loading="lazy"></a>
@@ -82,17 +61,26 @@
 
                 <h4 class="finding-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h4>
                 <p class="body-text">Forecasts started from <i>persistence</i>: assume the temperature stays where it is. A gradient-boosted model that learns from each node's last hour of inlet temperature beats it at every horizon.</p>
-                <div class="table-wrap">
-                    <table class="data-table">
-                        <thead>
-                            <tr><th>Horizon</th><th>Persistence MAE</th><th>Inlet-history MAE</th><th>Change</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>5 min</td><td>0.110&nbsp;°C</td><td>0.106&nbsp;°C</td><td class="num-good">−4.4%</td></tr>
-                            <tr><td>10 min</td><td>0.146&nbsp;°C</td><td>0.139&nbsp;°C</td><td class="num-good">−4.8%</td></tr>
-                            <tr><td>30 min</td><td>0.225&nbsp;°C</td><td>0.220&nbsp;°C</td><td class="num-good">−2.2%</td></tr>
-                        </tbody>
-                    </table>
+                <div class="chart-pair">
+                    <figure class="doc-figure">
+                        <a href="img/forecast-mae.png"><img src="img/forecast-mae.png" alt="Line chart of test MAE by forecast horizon (5, 10, 30 min). Error rises with horizon for all models. Inlet history stays below persistence at every horizon; inlet history + location and the full model are slightly lower at 5 and 10 min but above persistence at 30 min." loading="lazy"></a>
+                        <figcaption>Forecast error by horizon. Inlet history (blue) stays below persistence (gray) at every horizon; adding location helps slightly at 5–10 min but falls behind persistence at 30 min.</figcaption>
+                    </figure>
+                    <figure class="doc-figure table-box">
+                        <div class="table-area">
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Horizon</th><th>Persistence</th><th>Inlet history</th><th>Change</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>5 min</td><td>0.110&nbsp;°C</td><td>0.106&nbsp;°C</td><td class="num-good">−4.4%</td></tr>
+                                    <tr><td>10 min</td><td>0.146&nbsp;°C</td><td>0.139&nbsp;°C</td><td class="num-good">−4.8%</td></tr>
+                                    <tr><td>30 min</td><td>0.225&nbsp;°C</td><td>0.220&nbsp;°C</td><td class="num-good">−2.2%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <figcaption>Test mean absolute error (MAE) of persistence and the inlet-history model, July 26–31.</figcaption>
+                    </figure>
                 </div>
                 <p class="body-text">Once recent temperatures are known, location and power add almost nothing: a node's location is already reflected in its current temperature. Power alone does no better than a constant guess.</p>
 
@@ -159,8 +147,8 @@
         </div>
     </footer>
 
-    <script src="../../data/research-topics.js?v=20261012b"></script>
-    <script src="../../script.js?v=20261012b"></script>
+    <script src="../../data/research-topics.js?v=20261012d"></script>
+    <script src="../../script.js?v=20261012d"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
