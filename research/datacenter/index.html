@@ -45,7 +45,8 @@
                     </a>
                 </div>
 
-                <h3 class="block-title" id="finding-location"><span class="finding-num">1</span>Location, not power, sets which nodes run warm</h3>
+                <h3 class="block-title major">Findings</h3>
+                <h4 class="finding-title" id="finding-location"><span class="finding-num">1</span>Location, not power, sets which nodes run warm</h4>
                 <p class="body-text">Node-to-node differences in monthly mean inlet temperature were explained step by step. Power and job placement barely help; adding the node's position in the room, above all its height in the rack, explains most of the variation, and the pattern holds even for racks left out of fitting (R² 0.531).</p>
                 <div class="model-bars">
                     <p class="chart-caption">Share of node-to-node variation explained (R²)</p>
@@ -75,7 +76,7 @@
                     <figcaption>Inlet temperature by vertical slot follows a J-shape: coolest near slot 3, warmest at the top, a 4.2&nbsp;°C range. The top slot was warmest in all 661 analyzed hours, and adding job placement (dashed) does not change the profile.</figcaption>
                 </figure>
 
-                <h3 class="block-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h3>
+                <h4 class="finding-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h4>
                 <p class="body-text">Forecasts started from <i>persistence</i>: assume the temperature stays where it is. A gradient-boosted model that learns from each node's last hour of inlet temperature beats it at every horizon.</p>
                 <div class="table-wrap">
                     <table class="data-table">
@@ -91,7 +92,8 @@
                 </div>
                 <p class="body-text">Once recent temperatures are known, location and power add almost nothing: a node's location is already reflected in its current temperature. Power alone does no better than a constant guess.</p>
 
-                <h3 class="block-title">Warm is not the same as volatile</h3>
+                <h3 class="block-title major">Takeaway</h3>
+                <h4 class="finding-title">Warm is not the same as volatile</h4>
                 <div class="rack-view">
                     <div class="rack-col">
                         <div class="rack" role="img" aria-label="A 20-slot rack colored by inlet-temperature deviation: the bottom slots are cooler than average, with the coolest near slot 3, and the slots grow warmer toward the top, which is warmest">
@@ -131,7 +133,7 @@
                 </div>
                 <p class="body-text">For monitoring, this suggests two targets: use location to find nodes with sustained thermal exposure, and keep reliable, continuous inlet sensors to anticipate short-term changes.</p>
 
-                <h3 class="block-title">Study details</h3>
+                <h3 class="block-title major">Study details</h3>
                 <figure class="doc-figure">
                     <a href="img/rack-layout.png"><img src="img/rack-layout.png" alt="Schematic layout of 49 compute racks in rows A, B and C separated by alternating cold and hot aisles, with three non-compute positions, CRAC units 5 and 6, and CRAC units 1 to 4 with direct free cooling" loading="lazy"></a>
                     <figcaption>49 racks in three rows between cold and hot aisles, cooled by six CRAC units (four with direct free cooling) and rear-door heat exchangers. Each node is located by row, horizontal position <i>x</i>, and vertical slot <i>z</i> (0 = bottom, 19 = top). Adapted from Seyedkazemi Ardebili (2022); not to scale.</figcaption>

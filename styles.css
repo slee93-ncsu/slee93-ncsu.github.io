@@ -2165,17 +2165,36 @@ header {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.6rem;
-    height: 1.6rem;
-    margin-right: 0.6rem;
+    flex: 0 0 auto;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-right: 0.55rem;
     border-radius: 50%;
     background-color: var(--primary-color);
     color: #fff;
-    font-size: 0.9rem;
-    vertical-align: 0.1em;
+    font-size: 0.8rem;
 }
 
-.block-title[id] {
+.finding-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 2rem 0 0.75rem;
+}
+
+.block-title.major {
+    font-size: 1.35rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.block-title + .finding-title {
+    margin-top: 0.5rem;
+}
+
+.finding-title[id] {
     scroll-margin-top: 1.5rem;
 }
 
