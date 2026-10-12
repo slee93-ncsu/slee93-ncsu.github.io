@@ -2378,3 +2378,54 @@ header {
 .doc-figure + .fact-list {
     margin-top: 1rem;
 }
+
+/* Bar chart and figure side by side, equal-height boxes */
+.chart-pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    align-items: stretch;
+    margin-bottom: 1rem;
+}
+
+.chart-pair .doc-figure {
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-pair .doc-figure > a,
+.chart-pair .model-bars {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chart-pair .doc-figure img {
+    width: 100%;
+}
+
+.chart-pair .model-bars {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+}
+
+.chart-pair .model-bars .bar-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "label value"
+        "track track";
+    row-gap: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.chart-pair .model-bars .bar-label { grid-area: label; }
+.chart-pair .model-bars .bar-value { grid-area: value; }
+.chart-pair .model-bars .bar-track { grid-area: track; height: 18px; }
+
+@media (max-width: 768px) {
+    .chart-pair {
+        grid-template-columns: 1fr;
+    }
+}
