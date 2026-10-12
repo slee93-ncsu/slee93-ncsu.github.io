@@ -2063,3 +2063,27 @@ header {
 .nav-links a.nav-ext::after {
     display: none;
 }
+
+/* Figures on research pages (diagrams from project documents) */
+.doc-figure {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.doc-figure img {
+    max-width: 100%;
+    width: 720px;
+    height: auto;
+}
+
+.doc-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--light-text);
+    line-height: 1.55;
+    text-align: left;
+}
