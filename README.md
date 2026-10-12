@@ -23,7 +23,9 @@ Each publication entry has a `type` of `journal` or `conference`, which drives t
 
 `/research/` is an overview with one card per topic, and each topic has its own page at `research/<topic>/`. The side menu and the overview cards are generated from `data/research-topics.js`, so to add a topic or change its title, summary, status (`completed`, `ongoing`, `planned`) or subtopics, edit that file and create `research/<topic>/index.html` by copying an existing topic page and changing `data-current` and the content.
 
-Pages in subfolders reuse the shared `styles.css`, `script.js` and `data/` files; `<body data-root="../../">` tells the script where the site root is. To list publications on a page, add `<div class="related-publications publications-list" data-pubs="P5,C13"></div>`; the numbers refer to entries in `data/publications.json`.
+Subtopics also have their own pages at `research/<topic>/<subtopic>/` (for example `research/outage-prediction/single-county/`). Their pages use `data-current="<topic>/<subtopic>"` and `data-root="../../../"`. The parent topic page lists them as cards, built from the `subtopics` entries; add an optional `summary` to a subtopic to show it on its card.
+
+Pages in subfolders reuse the shared `styles.css`, `script.js` and `data/` files; `<body data-root="../../">` (or `../../../` one level deeper) tells the script where the site root is. To list publications on a page, add `<div class="related-publications publications-list" data-pubs="P5,C13"></div>`; the numbers refer to entries in `data/publications.json`.
 
 ## Browser caching
 

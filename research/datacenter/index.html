@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Center Thermal Analysis | Seungmin Lee</title>
-    <meta name="description" content="Inlet-temperature analysis and short-term forecasting in a GPU-intensive data center: research by Seungmin Lee.">
+    <meta name="description" content="Which servers in a GPU data center run warm, and how their temperature changes: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../styles.css?v=20261012e">
+    <link rel="stylesheet" href="../../styles.css?v=20261013c">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -30,47 +30,47 @@
                 <h2 class="section-title">Data Center Thermal Analysis <span class="status-badge status-under-review">Under review</span></h2>
 
                 <p class="project-title">Spatiotemporal Characterization and Short-Term Forecasting of Inlet Temperature in a GPU-Intensive Data Center</p>
-                <p class="lead">Inlet temperature is the air a server actually breathes, and in a GPU data center it differs from node to node. Using one month of measurements from 980 nodes, this study separates two questions that are usually blended together.</p>
+                <p class="lead">Each server node in a GPU data center takes in air at a different temperature. Using one month of data from 980 nodes, this study asks two separate questions: which nodes are always warmer, and how a node's temperature will change in the next few minutes.</p>
 
                 <div class="question-grid">
                     <a class="question-card" href="#finding-location" data-same-tab>
-                        <span class="q-label">Question 1 · persistent</span>
-                        <span class="q-text">Which nodes stay warm, month after month?</span>
-                        <span class="q-answer">Rack location, not power</span>
+                        <span class="q-label">Question 1 · long-term</span>
+                        <span class="q-text">Which nodes are always warmer than others?</span>
+                        <span class="q-answer">Their location in the rack, not their power use</span>
                     </a>
                     <a class="question-card" href="#finding-history" data-same-tab>
                         <span class="q-label">Question 2 · short-term</span>
-                        <span class="q-text">What will a node's temperature do in the next 5–30 minutes?</span>
-                        <span class="q-answer">Its own recent temperature history</span>
+                        <span class="q-text">How will a node's temperature change in the next 5–30 minutes?</span>
+                        <span class="q-answer">Its own temperature over the past hour</span>
                     </a>
                 </div>
 
                 <h3 class="block-title major">Findings</h3>
-                <h4 class="finding-title" id="finding-location"><span class="finding-num">1</span>Location, not power, sets which nodes run warm</h4>
-                <p class="body-text">Node-to-node differences in monthly mean inlet temperature were explained step by step. Power and job placement barely help; adding the node's position in the room, above all its height in the rack, explains most of the variation, and the pattern holds even for racks left out of fitting (R² 0.531).</p>
+                <h4 class="finding-title" id="finding-location"><span class="finding-num">1</span>Where a node sits matters more than how much power it uses</h4>
+                <p class="body-text">Power alone explained little variation in monthly mean inlet temperature (R² = 0.049), whereas adding horizontal and vertical location increased R² to 0.604. Vertical position contributed more than horizontal position, and the pattern held for unseen racks (R² = 0.531).</p>
                 <div class="chart-pair">
                     <figure class="doc-figure">
                         <a href="img/model-r2.png"><img src="img/model-r2.png" alt="Grouped bar chart of R² for four models. Power only: 0.049 monthly, 0.025 on unseen racks. Power + job placement: 0.105 and 0.077. Power + location: 0.604 and 0.531. Full model: 0.606 and 0.504." loading="lazy"></a>
-                        <figcaption>Share of node-to-node variation explained (R²). Adding location lifts it from 0.049 to 0.604, and it holds on racks left out of fitting (orange); job placement adds little.</figcaption>
+                        <figcaption>How much of the temperature difference between nodes each model explains (R²). Blue: all racks. Orange: racks the model had not seen. Job information adds little.</figcaption>
                     </figure>
                     <figure class="doc-figure">
                         <a href="img/vertical-profile.png"><img src="img/vertical-profile.png" alt="Line chart of adjusted inlet-temperature deviation by vertical slot position within a rack, z = 0 to 19. The profile is J-shaped: it falls from about −0.3&nbsp;°C at z = 0 to a minimum of about −1.8&nbsp;°C at z = 3, then rises steadily to about +2.4&nbsp;°C at z = 19. The power + location model and the full model with job-placement variables overlap almost exactly." loading="lazy"></a>
-                        <figcaption>Inlet temperature by vertical slot follows a J-shape: coolest near slot 3, warmest at the top, a 4.2&nbsp;°C range. The top slot was warmest in all 661 analyzed hours, and adding job placement (dashed) does not change the profile.</figcaption>
+                        <figcaption>Temperature by height in the rack. Nodes near the bottom (slot 3) are the coolest and nodes at the top are the warmest, 4.2&nbsp;°C apart. The top slot was the warmest in every one of the 661 hours analyzed.</figcaption>
                     </figure>
                 </div>
 
-                <h4 class="finding-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h4>
-                <p class="body-text">Forecasts started from <i>persistence</i>: assume the temperature stays where it is. A gradient-boosted model that learns from each node's last hour of inlet temperature beats it at every horizon.</p>
+                <h4 class="finding-title" id="finding-history"><span class="finding-num">2</span>A node's recent temperature is the best guide to the next few minutes</h4>
+                <p class="body-text">The baseline simply assumes the temperature stays the same. A model that uses each node's temperature over the past hour does better at every time horizon.</p>
                 <div class="chart-pair">
                     <figure class="doc-figure">
                         <a href="img/forecast-mae.png"><img src="img/forecast-mae.png" alt="Line chart of test MAE by forecast horizon (5, 10, 30 min). Error rises with horizon for all models. Inlet history stays below persistence at every horizon; inlet history + location and the full model are slightly lower at 5 and 10 min but above persistence at 30 min." loading="lazy"></a>
-                        <figcaption>Forecast error by horizon. Inlet history (blue) stays below persistence (gray) at every horizon; adding location helps slightly at 5–10 min but falls behind persistence at 30 min.</figcaption>
+                        <figcaption>Forecast error by time horizon. The past-hour model (blue) beats the baseline (gray, “persistence”) every time. Adding location helps slightly at 5–10 minutes but hurts at 30 minutes.</figcaption>
                     </figure>
                     <figure class="doc-figure table-box">
                         <div class="table-area">
                             <table class="data-table">
                                 <thead>
-                                    <tr><th>Horizon</th><th>Persistence</th><th>Inlet history</th><th>Change</th></tr>
+                                    <tr><th>Ahead</th><th>Baseline</th><th>Past-hour model</th><th>Change</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr><td>5 min</td><td>0.110&nbsp;°C</td><td>0.106&nbsp;°C</td><td class="num-good">−4.4%</td></tr>
@@ -79,13 +79,13 @@
                                 </tbody>
                             </table>
                         </div>
-                        <figcaption>Test mean absolute error (MAE) of persistence and the inlet-history model, July 26–31.</figcaption>
+                        <figcaption>Average forecast error (MAE) in the test week, July 26–31.</figcaption>
                     </figure>
                 </div>
-                <p class="body-text">Once recent temperatures are known, location and power add almost nothing: a node's location is already reflected in its current temperature. Power alone does no better than a constant guess.</p>
+                <p class="body-text">Once the recent temperature is known, location and power add almost nothing, because a node's location is already reflected in its current temperature. Power alone predicts no better than a fixed guess.</p>
 
                 <h3 class="block-title major">Takeaway</h3>
-                <h4 class="finding-title">Warm is not the same as volatile</h4>
+                <h4 class="finding-title">The warmest nodes are not the ones that change the most</h4>
                 <div class="rack-view">
                     <div class="rack-col">
                         <div class="rack" role="img" aria-label="A 20-slot rack colored by inlet-temperature deviation: the bottom slots are cooler than average, with the coolest near slot 3, and the slots grow warmer toward the top, which is warmest">
@@ -114,26 +114,26 @@
                     </div>
                     <div class="rack-notes">
                         <div class="rack-note rack-note-top">
-                            <p class="rack-note-title">Top 5 slots · sustained exposure</p>
-                            <p>Warmest, up to about +2.4&nbsp;°C above average, but changes least: 10-min forecast error <b>0.098&nbsp;°C</b>.</p>
+                            <p class="rack-note-title">Top 5 slots · warmest, but steady</p>
+                            <p>Up to about 2.4&nbsp;°C warmer than average, but their temperature changes the least. 10-min forecast error: <b>0.098&nbsp;°C</b>.</p>
                         </div>
                         <div class="rack-note rack-note-bottom">
-                            <p class="rack-note-title">Bottom 5 slots · short-term change</p>
-                            <p>Cooler, yet changes fastest: 10-min forecast error <b>0.182&nbsp;°C</b>, nearly twice the top.</p>
+                            <p class="rack-note-title">Bottom 5 slots · cooler, but change fastest</p>
+                            <p>Their temperature swings the most. 10-min forecast error: <b>0.182&nbsp;°C</b>, almost twice the top.</p>
                         </div>
                     </div>
                 </div>
-                <p class="body-text">For monitoring, this suggests two targets: use location to find nodes with sustained thermal exposure, and keep reliable, continuous inlet sensors to anticipate short-term changes.</p>
+                <p class="body-text">Monitoring therefore needs two approaches: use location to find the nodes that are always hot, and use reliable, continuous temperature sensors to catch short-term changes.</p>
 
                 <h3 class="block-title major">Study details</h3>
                 <figure class="doc-figure">
                     <a href="img/rack-layout.png"><img src="img/rack-layout.png" alt="Schematic layout of 49 compute racks in rows A, B and C separated by alternating cold and hot aisles, with three non-compute positions, CRAC units 5 and 6, and CRAC units 1 to 4 with direct free cooling" loading="lazy"></a>
-                    <figcaption>49 racks in three rows between cold and hot aisles, cooled by six CRAC units (four with direct free cooling) and rear-door heat exchangers. Each node is located by row, horizontal position <i>x</i>, and vertical slot <i>z</i> (0 = bottom, 19 = top). Adapted from Seyedkazemi Ardebili (2022); not to scale.</figcaption>
+                    <figcaption>Room layout: 49 racks in three rows between cold and hot aisles, cooled by six air-conditioning (CRAC) units. A node's location is its row, its position along the row (<i>x</i>), and its height in the rack (<i>z</i>, 0 = bottom, 19 = top). Adapted from Seyedkazemi Ardebili (2022); not to scale.</figcaption>
                 </figure>
                 <ul class="fact-list">
-                    <li><b>Data:</b> public operational dataset from a GPU-based HPC facility (Borghesi et al. 2023) · July 2022 · 980 nodes at ~1-min intervals · 411,348 job records</li>
-                    <li><b>Methods:</b> spline regression on power, job placement, and position with rack-level cross-validation · gradient-boosted trees forecasting the temperature change 5–30 min ahead</li>
-                    <li><b>Scope:</b> one month at one facility; associations, not causes. Cooling operation, airflow, and GPU utilization were not measured</li>
+                    <li><b>Data:</b> public operating data from a GPU-based supercomputer (Borghesi et al. 2023) · July 2022 · 980 nodes measured about every minute · 411,348 job records</li>
+                    <li><b>Methods:</b> regression with smooth location terms, tested on held-out racks · gradient-boosted tree forecasts 5–30 minutes ahead</li>
+                    <li><b>Scope:</b> one month at one facility. The results show associations, not causes; cooling operation, airflow, and GPU utilization were not measured.</li>
                     <li><b>Authors:</b> Seungmin Lee, Juwan Ha, Yujin Kim, Jaeyoon Byun, Soolyeon Cho</li>
                 </ul>
             </div>
@@ -147,8 +147,8 @@
         </div>
     </footer>
 
-    <script src="../../data/research-topics.js?v=20261012e"></script>
-    <script src="../../script.js?v=20261012e"></script>
+    <script src="../../data/research-topics.js?v=20261013c"></script>
+    <script src="../../script.js?v=20261013c"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

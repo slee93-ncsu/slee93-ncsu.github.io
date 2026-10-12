@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Build research menus and cards first so the nav handlers below see them
     renderResearchNav();
     renderResearchCards();
+    renderSubtopicCards();
 
     // Load profile information
     loadProfileInfo();
@@ -444,15 +445,15 @@ const RESEARCH_STATUS_LABELS = {
 };
 
 // Fill <nav class="side-nav" data-current="..."> on research pages from
-// window.RESEARCH_TOPICS (data/research-topics.js). data-current is a topic id
-// or "overview". Links within the current page are #anchors so the scroll
-// highlighting works; links to other pages point at their folders.
+// window.RESEARCH_TOPICS (data/research-topics.js). data-current is "overview",
+// a topic id, or "<topic id>/<subtopic id>" on a subtopic page. Every topic
+// and subtopic has its own page folder.
 function renderResearchNav() {
     const nav = document.querySelector('.side-nav[data-current]');
     if (!nav || !window.RESEARCH_TOPICS) return;
 
     const root = siteRoot();
-    const current = nav.dataset.current;
+    const [current, currentSub] = nav.dataset.current.split('/');
     const ul = document.createElement('ul');
     ul.className = 'nav-links';
 
@@ -471,14 +472,13 @@ function renderResearchNav() {
     addLink(ul, current === 'overview' ? '#overview' : root + 'research/', 'Overview', { current: current === 'overview' });
 
     window.RESEARCH_TOPICS.forEach(topic => {
-        const isCurrent = topic.id === current;
         const pageHref = root + 'research/' + topic.id + '/';
-        const li = addLink(ul, isCurrent ? '#' + topic.id : pageHref, topic.title, { current: isCurrent });
+        const li = addLink(ul, pageHref, topic.title, { current: topic.id === current && !currentSub });
         if (topic.subtopics && topic.subtopics.length > 0) {
             const sub = document.createElement('ul');
             sub.className = 'sub-links';
             topic.subtopics.forEach(st => {
-                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title);
+                addLink(sub, pageHref + st.id + '/', st.title, { current: topic.id === current && st.id === currentSub });
             });
             li.appendChild(sub);
         }
@@ -490,7 +490,7 @@ function renderResearchNav() {
 
 // Fill <div class="research-cards"> on the overview page with one card per topic.
 function renderResearchCards() {
-    const container = document.querySelector('.research-cards');
+    const container = document.querySelector('.research-cards:not([data-topic])');
     if (!container || !window.RESEARCH_TOPICS) return;
 
     const root = siteRoot();
@@ -531,6 +531,42 @@ function renderResearchCards() {
             });
             card.appendChild(chips);
         }
+        container.appendChild(card);
+    });
+}
+
+// Fill <div class="research-cards" data-topic="..."> on a topic page with one
+// card per subtopic, linking to the subtopic's own page.
+function renderSubtopicCards() {
+    const container = document.querySelector('.research-cards[data-topic]');
+    if (!container || !window.RESEARCH_TOPICS) return;
+
+    const topic = window.RESEARCH_TOPICS.find(t => t.id === container.dataset.topic);
+    if (!topic || !topic.subtopics) return;
+
+    container.innerHTML = '';
+    topic.subtopics.forEach(st => {
+        const card = document.createElement('a');
+        card.className = 'research-card';
+        card.href = st.id + '/';
+        card.setAttribute('data-same-tab', '');
+
+        const head = document.createElement('div');
+        head.className = 'research-card-head';
+        const title = document.createElement('h3');
+        title.textContent = st.title;
+        head.appendChild(title);
+        if (st.status) {
+            const badge = document.createElement('span');
+            badge.className = 'status-badge status-' + st.status;
+            badge.textContent = RESEARCH_STATUS_LABELS[st.status] || st.status;
+            head.appendChild(badge);
+        }
+
+        const summary = document.createElement('p');
+        summary.textContent = st.summary || 'Details coming soon.';
+
+        card.append(head, summary);
         container.appendChild(card);
     });
 }

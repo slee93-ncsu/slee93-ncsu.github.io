@@ -1615,7 +1615,7 @@ footer {
 }
 
 /* Nested side-menu items: shown indented on wide screens, hidden in the
-   horizontal mobile menu (the parent topic link still scrolls there). */
+   horizontal mobile menu (each topic page links to its subtopic pages). */
 .side-nav .sub-links {
     list-style: none;
 }
@@ -2432,4 +2432,26 @@ header {
     .sidebar-main .project-title {
         font-size: 1.2rem;
     }
+}
+
+/* Subtopic pages: link back to the parent topic above the heading */
+.breadcrumb {
+    margin-bottom: 0.75rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb a {
+    color: var(--light-text);
+}
+
+.breadcrumb a:hover {
+    color: var(--primary-color);
+}
+
+.breadcrumb a::before {
+    content: "← ";
+}
+
+.research-cards[data-topic] {
+    margin-top: 1.5rem;
 }
