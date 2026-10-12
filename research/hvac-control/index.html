@@ -32,30 +32,12 @@
                 <p class="project-title">EMS with an Optimal Control Algorithm for Energy-Efficient Commercial Buildings Using AI and Digital Twin Technology</p>
                 <p class="lead">At a manufacturing plant in South Carolina, artificial neural networks (ANNs) predict HVAC energy use, and an optimizer computes the setpoints that reduce energy while keeping indoor conditions within comfort limits. As the project's international partner, NC State BETLab carried out this U.S. demonstration.</p>
 
-                <ul class="fact-list">
-                    <li><b>Funding:</b> Korea Evaluation Institute of Industrial Technology (KEIT), Ministry of Trade, Industry and Energy · No. 20014154 · 2021–2024</li>
-                    <li><b>Partners:</b> Inter Electric (lead) · Korea University · NC State BETLab</li>
-                    <li><b>Site:</b> Manufacturing plant in South Carolina, USA (built 1998) · ASHRAE climate zone 3A, warm-humid and cooling-dominated</li>
-                    <li><b>HVAC:</b> 1,374.5 tons of cooling capacity from chillers, GMUs, RTUs, and DLHPs</li>
-                    <li><b>Deployment:</b> BACnet toolbox running PyTorch models and CasADi/IPOPT optimization on an isolated network</li>
-                </ul>
-
-                <h3 class="block-title">Control system</h3>
-                <figure class="doc-figure">
-                    <a href="img/toolbox-bas-network.png"><img class="fig-medium" src="img/toolbox-bas-network.png" alt="Network diagram: the toolbox connects to the plant's BAS server over Ethernet, and the BAS server communicates with field controllers over BACnet TCP" loading="lazy"></a>
-                    <figcaption>The toolbox runs the ANN models and optimizer and exchanges data and setpoints with the plant's BAS server over Ethernet; the BAS server talks to the field controllers over BACnet TCP.</figcaption>
-                </figure>
-
-                <h3 class="block-title">Optimal control algorithm</h3>
-                <figure class="doc-figure">
-                    <a href="img/ann-optimal-control-flowchart.png"><img src="img/ann-optimal-control-flowchart.png" alt="Flowchart: training data are created in the real building by randomizing compressor staging, outdoor air damper position, fan flow rate and discharge air temperature; the ANN predicts energy; the optimal control variables are chosen within compressor staging 1–2, damper 10–100%, fan flow 10–100% and discharge air temperature 55–63 °F; the values are sent to the BAS" loading="lazy"></a>
-                    <figcaption>Training data are created by randomizing controllable variables in the real building; the ANN-predicted energy is then used to choose compressor staging, outdoor air damper position, fan flow rate, and discharge air temperature within their allowable ranges before sending them to the BAS. Model inputs were chosen by correlation with heating or cooling energy (R² &gt; 0.7, or |r| &gt; 0.3), with outdoor conditions and time added.</figcaption>
-                </figure>
-
-                <h3 class="block-title">Measured energy savings</h3>
-                <div class="compare-grid">
-                    <figure class="compare-chart">
-                        <figcaption><span class="compare-title">Cooling</span> <span class="compare-period">Jul 11 – Aug 11, 2024</span><span class="compare-method">Outdoor-temperature-based setpoint scheduling</span></figcaption>
+                <h3 class="block-title">Results</h3>
+                <div class="result-grid">
+                    <div class="result-card">
+                        <p class="result-kind">Cooling energy</p>
+                        <p class="result-value">−13.1%</p>
+                        <p class="result-method">Outdoor-temperature-based setpoint scheduling</p>
                         <div class="bar-row" title="Baseline: 92,564 kWh">
                             <span class="bar-label">Baseline</span>
                             <div class="bar-track"><div class="bar bar-baseline" style="width: 100%"></div></div>
@@ -66,11 +48,13 @@
                             <div class="bar-track"><div class="bar bar-optimal" style="width: 86.9%"></div></div>
                             <span class="bar-value">80,403 kWh</span>
                         </div>
-                        <p class="compare-saving">−13.1% energy</p>
-                        <p class="compare-note">Plant operating constraints ruled out full ANN control in summer, so the toolbox adjusted the cooling setpoint with outdoor temperature.</p>
-                    </figure>
-                    <figure class="compare-chart">
-                        <figcaption><span class="compare-title">Heating</span> <span class="compare-period">Dec 23, 2024 – Jan 17, 2025</span><span class="compare-method">ANN-based optimal control</span></figcaption>
+                        <p class="result-period">Jul 11 – Aug 11, 2024 vs. weather-matched baseline days</p>
+                        <p class="result-note">Plant operating constraints ruled out full ANN control in summer.</p>
+                    </div>
+                    <div class="result-card">
+                        <p class="result-kind">Heating energy</p>
+                        <p class="result-value">−25.2%</p>
+                        <p class="result-method">ANN-based optimal control</p>
                         <div class="bar-row" title="Baseline: 14,993 kWh">
                             <span class="bar-label">Baseline</span>
                             <div class="bar-track"><div class="bar bar-baseline" style="width: 100%"></div></div>
@@ -81,13 +65,34 @@
                             <div class="bar-track"><div class="bar bar-optimal" style="width: 74.8%"></div></div>
                             <span class="bar-value">11,217 kWh</span>
                         </div>
-                        <p class="compare-saving">−25.2% energy</p>
-                    </figure>
+                        <p class="result-period">Dec 23, 2024 – Jan 17, 2025 vs. weather-matched baseline days</p>
+                    </div>
                 </div>
 
                 <div class="callout">
                     <p><b>Lesson learned:</b> a January 2025 winter storm sharply raised prediction error, showing that model-predictive building control needs extreme-weather data in training.</p>
                 </div>
+
+                <h3 class="block-title">How it works</h3>
+                <div class="process-grid">
+                    <figure class="doc-figure">
+                        <a href="img/toolbox-bas-network.png"><img class="fig-medium" src="img/toolbox-bas-network.png" alt="Network diagram: the toolbox connects to the plant's BAS server over Ethernet, and the BAS server communicates with field controllers over BACnet TCP" loading="lazy"></a>
+                        <figcaption><b>Control network.</b> The toolbox exchanges data and setpoints with the BAS server over Ethernet; the BAS reaches field controllers over BACnet TCP.</figcaption>
+                    </figure>
+                    <figure class="doc-figure">
+                        <a href="img/ann-optimal-control-flowchart.png"><img src="img/ann-optimal-control-flowchart.png" alt="Flowchart: training data are created in the real building by randomizing compressor staging, outdoor air damper position, fan flow rate and discharge air temperature; the ANN predicts energy; the optimal control variables are chosen within compressor staging 1–2, damper 10–100%, fan flow 10–100% and discharge air temperature 55–63 °F; the values are sent to the BAS" loading="lazy"></a>
+                        <figcaption><b>Control algorithm.</b> Randomized operation generates training data; ANN energy predictions then set compressor staging, damper position, fan flow, and discharge air temperature within allowable ranges.</figcaption>
+                    </figure>
+                </div>
+
+                <h3 class="block-title">Project details</h3>
+                <ul class="fact-list">
+                    <li><b>Funding:</b> Korea Evaluation Institute of Industrial Technology (KEIT), Ministry of Trade, Industry and Energy · No. 20014154 · 2021–2024</li>
+                    <li><b>Partners:</b> Inter Electric (lead) · Korea University · NC State BETLab</li>
+                    <li><b>Site:</b> Manufacturing plant in South Carolina, USA (built 1998) · ASHRAE climate zone 3A, warm-humid and cooling-dominated</li>
+                    <li><b>HVAC:</b> 1,374.5 tons of cooling capacity from chillers, GMUs, RTUs, and DLHPs</li>
+                    <li><b>Deployment:</b> BACnet toolbox running PyTorch models and CasADi/IPOPT optimization on an isolated network</li>
+                </ul>
             </div>
         </section>
     </main>
