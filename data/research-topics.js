@@ -35,7 +35,7 @@ window.RESEARCH_TOPICS = [
         id: 'datacenter',
         title: 'Data Center Thermal Analysis',
         status: 'under-review',
-        summary: 'Node-level inlet temperature in a GPU data center: rack location explains which nodes run warm (R² 0.604 vs. 0.049 for power alone), while recent temperature history drives short-term forecasts.',
+        summary: "Which servers in a GPU data center run warm, and why: location in the rack explains most of the difference, while each node's recent temperature best predicts the next few minutes.",
         subtopics: []
     },
     {
