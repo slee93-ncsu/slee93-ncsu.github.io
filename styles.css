@@ -2079,25 +2079,28 @@ header {
     padding-bottom: 1.75rem;
 }
 
-/* Small text link next to the contact icons (e.g. Research) */
-.contact-info a.header-text-link {
-    width: auto;
+/* Small external-page icon next to a menu item (Research → research pages) */
+.nav-links li.nav-with-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav-links a.nav-ext {
+    display: inline-flex;
+    align-items: center;
     height: auto;
-    align-self: center;
-    padding: 0.35rem 0.9rem;
-    border-radius: 999px;
-    background-color: #eaf4f9;
+    line-height: 1;
+    padding: 0.2rem;
+    color: var(--primary-strong);
+    border-radius: 4px;
+}
+
+.nav-links a.nav-ext:hover {
     color: var(--primary-color);
-    font-size: 0.85rem;
-    font-weight: 500;
-    white-space: nowrap;
+    background-color: #eaf4f9;
 }
 
-.contact-info a.header-text-link:hover {
-    background-color: var(--primary-strong);
-    color: #fff;
-}
-
-.contact-info a.header-text-link span {
-    margin-left: 0.3rem;
+.nav-links a.nav-ext::after {
+    display: none;
 }

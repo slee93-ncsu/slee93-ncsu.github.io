@@ -25,11 +25,5 @@
       "icon": "<i class=\"fab fa-linkedin\" title=\"LinkedIn\"></i>",
       "target": "_blank"
     }
-  ],
-  "headerLinks": [
-    {
-      "text": "Research",
-      "url": "research/"
-    }
   ]
 }
