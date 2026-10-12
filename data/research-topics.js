@@ -35,7 +35,7 @@ window.RESEARCH_TOPICS = [
         id: 'datacenter',
         title: 'Datacenter',
         status: 'under-review',
-        summary: 'Thermal-aware operation of high-performance computing environments.',
+        summary: 'Node-level inlet temperature in a GPU data center: rack location explains which nodes run warm (R² 0.604 vs. 0.049 for power alone), while recent temperature history drives short-term forecasts.',
         subtopics: []
     },
     {
