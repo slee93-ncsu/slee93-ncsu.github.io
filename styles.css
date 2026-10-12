@@ -1761,15 +1761,6 @@ footer {
     color: var(--light-text);
 }
 
-.nav-status {
-    display: inline-block;
-    margin-left: 0.3rem;
-    font-size: 0.78rem;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--light-text);
-}
-
 .planned-note {
     color: var(--light-text);
     margin-bottom: 1rem;
@@ -1879,14 +1870,6 @@ footer {
     font-style: italic;
 }
 
-.nav-status-under-review {
-    color: #8a5a00;
-}
-
-.nav-status-reviewed {
-    color: #2b6b43;
-}
-
 /* Header profile box: smaller name and affiliation text */
 .profile-info h1 {
     font-size: 2rem;
@@ -1970,7 +1953,6 @@ header {
    Body text 1rem; secondary text (captions, notes, chart labels) 0.875rem. */
 .sidebar-main .about-content,
 .sidebar-main .lead,
-.sidebar-main .project-title,
 .sidebar-main .fact-list,
 .sidebar-main .planned-note,
 .sidebar-main .body-text,
@@ -1984,7 +1966,11 @@ header {
 }
 
 .sidebar-main .project-title {
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--text-color);
+    margin: 0.25rem 0 1rem;
 }
 
 .sidebar-main .doc-figure figcaption,
@@ -2439,5 +2425,11 @@ header {
     .chart-pair .doc-figure > a,
     .chart-pair .table-area {
         height: auto;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar-main .project-title {
+        font-size: 1.2rem;
     }
 }
