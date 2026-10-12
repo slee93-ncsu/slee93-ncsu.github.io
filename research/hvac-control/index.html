@@ -30,25 +30,20 @@
                 <h2 class="section-title">AI-Based HVAC Optimal Control <span class="status-badge status-completed">Completed</span></h2>
 
                 <p class="project-title">EMS with an Optimal Control Algorithm for Energy-Efficient Commercial Buildings Using AI and Digital Twin Technology</p>
-                <div class="meta-chips">
-                    <span class="chip"><i class="fas fa-landmark"></i> KEIT · MOTIE</span>
-                    <span class="chip"><i class="far fa-calendar"></i> 2021 – 2024</span>
-                    <span class="chip"><i class="fas fa-handshake"></i> Inter Electric · Korea Univ. · NC State BETLab</span>
-                </div>
-
                 <p class="lead">At a manufacturing plant in South Carolina, artificial neural networks (ANNs) predict HVAC energy use, and an optimizer computes the setpoints that reduce energy while keeping indoor conditions within comfort limits. As the project's international partner, NC State BETLab carried out this U.S. demonstration.</p>
 
-                <div class="site-facts">
-                    <div class="site-fact"><i class="fas fa-industry"></i><span class="fact-value">Manufacturing plant</span><span class="fact-label">South Carolina, USA · built 1998</span></div>
-                    <div class="site-fact"><i class="fas fa-temperature-high"></i><span class="fact-value">Climate zone 3A</span><span class="fact-label">Warm-humid; cooling-dominated</span></div>
-                    <div class="site-fact"><i class="fas fa-fan"></i><span class="fact-value">1,374.5 tons</span><span class="fact-label">Cooling capacity: chillers, GMUs, RTUs, DLHPs</span></div>
-                    <div class="site-fact"><i class="fas fa-network-wired"></i><span class="fact-value">BACnet toolbox</span><span class="fact-label">PyTorch + CasADi/IPOPT on an isolated network</span></div>
-                </div>
+                <ul class="fact-list">
+                    <li><b>Funding:</b> Korea Evaluation Institute of Industrial Technology (KEIT), Ministry of Trade, Industry and Energy · No. 20014154 · 2021–2024</li>
+                    <li><b>Partners:</b> Inter Electric (lead) · Korea University · NC State BETLab</li>
+                    <li><b>Site:</b> Manufacturing plant in South Carolina, USA (built 1998) · ASHRAE climate zone 3A, warm-humid and cooling-dominated</li>
+                    <li><b>HVAC:</b> 1,374.5 tons of cooling capacity from chillers, GMUs, RTUs, and DLHPs</li>
+                    <li><b>Deployment:</b> BACnet toolbox running PyTorch models and CasADi/IPOPT optimization on an isolated network</li>
+                </ul>
 
                 <h3 class="block-title">Control system</h3>
                 <div class="system-diagram">
                     <div class="sys-box sys-input">
-                        <h4><i class="fas fa-database"></i> BAS data</h4>
+                        <h4>BAS data</h4>
                         <ul>
                             <li>Space temperature &amp; setpoint</li>
                             <li>Supply fan &amp; capacity status</li>
@@ -59,19 +54,19 @@
                     </div>
                     <div class="sys-arrow" aria-hidden="true">→</div>
                     <div class="sys-box">
-                        <h4><i class="fas fa-brain"></i> ANN models</h4>
+                        <h4>ANN models</h4>
                         <p>Predict hourly heating and cooling energy from 10 selected inputs</p>
                         <p class="sys-meta">PyTorch · ASHRAE Guideline 14: CV(RMSE) ≤ 15%, NMBE ±10%</p>
                     </div>
                     <div class="sys-arrow" aria-hidden="true">→</div>
                     <div class="sys-box sys-highlight">
-                        <h4><i class="fas fa-sliders-h"></i> Optimizer</h4>
+                        <h4>Optimizer</h4>
                         <p>Minimizes a cost function under comfort constraints at every time step</p>
                         <p class="sys-meta">CasADi + IPOPT, with the ANN converted to a symbolic function</p>
                     </div>
                     <div class="sys-arrow" aria-hidden="true">→</div>
                     <div class="sys-box sys-output">
-                        <h4><i class="fas fa-building"></i> BAS</h4>
+                        <h4>BAS</h4>
                         <p>Receives the optimal setpoints and runs the HVAC units</p>
                         <p class="sys-meta">BACnet + TCP/IP · isolated network</p>
                     </div>
@@ -112,7 +107,6 @@
                 </div>
 
                 <div class="callout">
-                    <i class="fas fa-cloud-showers-heavy"></i>
                     <p><b>Lesson learned:</b> a January 2025 winter storm sharply raised prediction error, showing that model-predictive building control needs extreme-weather data in training.</p>
                 </div>
             </div>

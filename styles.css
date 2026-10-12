@@ -1648,14 +1648,22 @@ footer {
 .project-title {
     font-weight: 600;
     font-size: 1.05rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
-.meta-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
+.fact-list {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.fact-list li {
+    margin-bottom: 0.35rem;
+}
+
+.fact-list b {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .chip {
@@ -1700,11 +1708,6 @@ footer {
     margin-bottom: 0.4rem;
 }
 
-.sys-box h4 i {
-    color: var(--primary-strong);
-    margin-right: 0.3rem;
-}
-
 .sys-box p,
 .sys-box li {
     font-size: 0.85rem;
@@ -1744,40 +1747,6 @@ footer {
     margin-top: 0.8rem;
     font-size: 0.85rem;
     color: var(--light-text);
-}
-
-.site-facts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.site-fact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--border-color);
-}
-
-.site-fact i {
-    font-size: 1.3rem;
-    color: var(--primary-strong);
-    margin-bottom: 0.4rem;
-}
-
-.fact-value {
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.fact-label {
-    font-size: 0.82rem;
-    color: var(--light-text);
-    line-height: 1.4;
 }
 
 .compare-grid {
@@ -1876,12 +1845,6 @@ footer {
     background-color: #eaf4f9;
 }
 
-.callout i {
-    font-size: 1.3rem;
-    color: var(--primary-strong);
-    margin-top: 0.15rem;
-}
-
 @media (max-width: 992px) {
     .system-diagram {
         grid-template-columns: 1fr;
@@ -1889,10 +1852,6 @@ footer {
 
     .sys-arrow {
         transform: rotate(90deg);
-    }
-
-    .site-facts {
-        grid-template-columns: repeat(2, 1fr);
     }
 }
 
