@@ -6,7 +6,7 @@
     <title>Data Center Thermal Analysis | Seungmin Lee</title>
     <meta name="description" content="Inlet-temperature analysis and short-term forecasting in a GPU-intensive data center: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../styles.css?v=20261012c">
+    <link rel="stylesheet" href="../../styles.css?v=20261012d">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -61,17 +61,26 @@
 
                 <h4 class="finding-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h4>
                 <p class="body-text">Forecasts started from <i>persistence</i>: assume the temperature stays where it is. A gradient-boosted model that learns from each node's last hour of inlet temperature beats it at every horizon.</p>
-                <div class="table-wrap">
-                    <table class="data-table">
-                        <thead>
-                            <tr><th>Horizon</th><th>Persistence MAE</th><th>Inlet-history MAE</th><th>Change</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>5 min</td><td>0.110&nbsp;°C</td><td>0.106&nbsp;°C</td><td class="num-good">−4.4%</td></tr>
-                            <tr><td>10 min</td><td>0.146&nbsp;°C</td><td>0.139&nbsp;°C</td><td class="num-good">−4.8%</td></tr>
-                            <tr><td>30 min</td><td>0.225&nbsp;°C</td><td>0.220&nbsp;°C</td><td class="num-good">−2.2%</td></tr>
-                        </tbody>
-                    </table>
+                <div class="chart-pair">
+                    <figure class="doc-figure">
+                        <a href="img/forecast-mae.png"><img src="img/forecast-mae.png" alt="Line chart of test MAE by forecast horizon (5, 10, 30 min). Error rises with horizon for all models. Inlet history stays below persistence at every horizon; inlet history + location and the full model are slightly lower at 5 and 10 min but above persistence at 30 min." loading="lazy"></a>
+                        <figcaption>Forecast error by horizon. Inlet history (blue) stays below persistence (gray) at every horizon; adding location helps slightly at 5–10 min but falls behind persistence at 30 min.</figcaption>
+                    </figure>
+                    <figure class="doc-figure table-box">
+                        <div class="table-area">
+                            <table class="data-table">
+                                <thead>
+                                    <tr><th>Horizon</th><th>Persistence</th><th>Inlet history</th><th>Change</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>5 min</td><td>0.110&nbsp;°C</td><td>0.106&nbsp;°C</td><td class="num-good">−4.4%</td></tr>
+                                    <tr><td>10 min</td><td>0.146&nbsp;°C</td><td>0.139&nbsp;°C</td><td class="num-good">−4.8%</td></tr>
+                                    <tr><td>30 min</td><td>0.225&nbsp;°C</td><td>0.220&nbsp;°C</td><td class="num-good">−2.2%</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <figcaption>Test mean absolute error (MAE) of persistence and the inlet-history model, July 26–31.</figcaption>
+                    </figure>
                 </div>
                 <p class="body-text">Once recent temperatures are known, location and power add almost nothing: a node's location is already reflected in its current temperature. Power alone does no better than a constant guess.</p>
 
@@ -138,8 +147,8 @@
         </div>
     </footer>
 
-    <script src="../../data/research-topics.js?v=20261012c"></script>
-    <script src="../../script.js?v=20261012c"></script>
+    <script src="../../data/research-topics.js?v=20261012d"></script>
+    <script src="../../script.js?v=20261012d"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

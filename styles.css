@@ -2407,12 +2407,37 @@ header {
     max-height: 100%;
 }
 
+.chart-pair .table-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 230px;
+    overflow-x: auto;
+}
+
+.chart-pair .data-table {
+    min-width: 0;
+    width: 100%;
+}
+
+.chart-pair .data-table th,
+.chart-pair .data-table td {
+    padding: 0.55rem 0.5rem;
+}
+
 @media (max-width: 768px) {
     .chart-pair {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .chart-pair .doc-figure > a {
+    .chart-pair .data-table th,
+    .chart-pair .data-table td {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.875rem;
+    }
+
+    .chart-pair .doc-figure > a,
+    .chart-pair .table-area {
         height: auto;
     }
 }
