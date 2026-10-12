@@ -6,7 +6,7 @@
     <title>Data Center Thermal Analysis | Seungmin Lee</title>
     <meta name="description" content="Which servers in a GPU data center run warm, and how their temperature changes: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../styles.css?v=20261013b">
+    <link rel="stylesheet" href="../../styles.css?v=20261013c">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -47,7 +47,7 @@
 
                 <h3 class="block-title major">Findings</h3>
                 <h4 class="finding-title" id="finding-location"><span class="finding-num">1</span>Where a node sits matters more than how much power it uses</h4>
-                <p class="body-text">Power use explains only 5% of the temperature differences between nodes. Adding each node's location in the room raises this to 60%, and height in the rack matters most. The result also holds for racks the model has never seen.</p>
+                <p class="body-text">Power alone explained little variation in monthly mean inlet temperature (R² = 0.049), whereas adding horizontal and vertical location increased R² to 0.604. Vertical position contributed more than horizontal position, and the pattern held for unseen racks (R² = 0.531).</p>
                 <div class="chart-pair">
                     <figure class="doc-figure">
                         <a href="img/model-r2.png"><img src="img/model-r2.png" alt="Grouped bar chart of R² for four models. Power only: 0.049 monthly, 0.025 on unseen racks. Power + job placement: 0.105 and 0.077. Power + location: 0.604 and 0.531. Full model: 0.606 and 0.504." loading="lazy"></a>
@@ -147,8 +147,8 @@
         </div>
     </footer>
 
-    <script src="../../data/research-topics.js?v=20261013b"></script>
-    <script src="../../script.js?v=20261013b"></script>
+    <script src="../../data/research-topics.js?v=20261013c"></script>
+    <script src="../../script.js?v=20261013c"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
