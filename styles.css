@@ -1906,42 +1906,35 @@ footer {
     }
 }
 
-/* Research status badges */
+/* Research status labels: plain italic text, colored by status */
 .status-badge {
     display: inline-block;
     vertical-align: middle;
     margin-left: 0.5rem;
-    padding: 0.15rem 0.6rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-style: italic;
 }
 
 .status-completed {
-    background-color: #eaf4f9;
     color: var(--primary-color);
 }
 
 .status-ongoing {
-    background-color: var(--primary-strong);
-    color: #fff;
+    color: var(--primary-color);
 }
 
 .status-planned {
-    background-color: #eceff1;
     color: var(--light-text);
 }
 
 .nav-status {
     display: inline-block;
     margin-left: 0.3rem;
-    font-size: 0.7rem;
-    font-weight: 500;
+    font-size: 0.78rem;
+    font-weight: 400;
+    font-style: italic;
     color: var(--light-text);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
 }
 
 .planned-note {
@@ -2032,4 +2025,31 @@ footer {
     .research-cards {
         grid-template-columns: 1fr;
     }
+}
+
+.status-under-review {
+    color: #8a5a00;
+}
+
+.status-reviewed {
+    color: #2b6b43;
+}
+
+.subsection .status-badge {
+    font-size: 0.85rem;
+}
+
+.chip-status {
+    margin-left: 0.3rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.nav-status-under-review {
+    color: #8a5a00;
+}
+
+.nav-status-reviewed {
+    color: #2b6b43;
 }

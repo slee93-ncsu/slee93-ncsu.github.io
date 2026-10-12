@@ -435,7 +435,16 @@ function setupLinkObserver() {
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
 } 
-const RESEARCH_STATUS_LABELS = { completed: 'Completed', ongoing: 'Ongoing', planned: 'Planned' };
+const RESEARCH_STATUS_LABELS = {
+    completed: 'Completed',
+    ongoing: 'Ongoing',
+    planned: 'Planned',
+    'under-review': 'Under review',
+    reviewed: 'Reviewed'
+};
+
+// Statuses also shown as a small label next to the item in the side menu
+const RESEARCH_NAV_STATUSES = ['planned', 'under-review', 'reviewed'];
 
 // Fill <nav class="side-nav" data-current="..."> on research pages from
 // window.RESEARCH_TOPICS (data/research-topics.js). data-current is a topic id
@@ -456,10 +465,10 @@ function renderResearchNav() {
         a.href = href;
         a.textContent = text;
         if (options.current) a.classList.add('current');
-        if (options.status === 'planned') {
+        if (RESEARCH_NAV_STATUSES.includes(options.status)) {
             const tag = document.createElement('span');
-            tag.className = 'nav-status';
-            tag.textContent = RESEARCH_STATUS_LABELS.planned;
+            tag.className = 'nav-status nav-status-' + options.status;
+            tag.textContent = RESEARCH_STATUS_LABELS[options.status];
             a.append(' ', tag);
         }
         li.appendChild(a);
@@ -478,7 +487,7 @@ function renderResearchNav() {
             const sub = document.createElement('ul');
             sub.className = 'sub-links';
             topic.subtopics.forEach(st => {
-                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title);
+                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title, { status: st.status });
             });
             li.appendChild(sub);
         }
@@ -521,6 +530,12 @@ function renderResearchCards() {
                 const chip = document.createElement('span');
                 chip.className = 'chip';
                 chip.textContent = st.title;
+                if (st.status) {
+                    const tag = document.createElement('span');
+                    tag.className = 'chip-status status-' + st.status;
+                    tag.textContent = RESEARCH_STATUS_LABELS[st.status] || st.status;
+                    chip.append(' ', tag);
+                }
                 chips.appendChild(chip);
             });
             card.appendChild(chips);

@@ -1,33 +1,33 @@
 // Research topics shown in the research side menu and on the /research/ overview.
 // Each topic has its own page at research/<id>/index.html.
-//   status:    'completed' | 'ongoing' | 'planned'
-//   subtopics: sections inside the topic page ({ id, title }), linked from the menu
+//   status:    'completed' | 'ongoing' | 'planned' | 'under-review' | 'reviewed'
+//   subtopics: sections inside the topic page ({ id, title, status }), linked from the menu
 window.RESEARCH_TOPICS = [
     {
         id: 'building-grid-resiliency',
         title: 'Building–Grid Resiliency',
-        status: 'planned',
+        status: 'ongoing',
         summary: 'How buildings and distribution grids behave through weather-driven outages and recovery, from a single house to the feeder level.',
         subtopics: [
-            { id: 'review', title: 'Review' },
-            { id: 'single-house', title: 'Single House Level' },
-            { id: 'feeder-level', title: 'Feeder Level' }
+            { id: 'review', title: 'Review', status: 'under-review' },
+            { id: 'single-house', title: 'Single House Level', status: 'planned' },
+            { id: 'feeder-level', title: 'Feeder Level', status: 'planned' }
         ]
     },
     {
         id: 'outage-prediction',
         title: 'Power Outage Prediction',
-        status: 'planned',
+        status: 'ongoing',
         summary: 'Forecasting rare, large-scale weather-induced power outages for single and multiple counties.',
         subtopics: [
-            { id: 'single-county', title: 'Single County' },
-            { id: 'multi-county', title: 'Multi County' }
+            { id: 'single-county', title: 'Single County', status: 'reviewed' },
+            { id: 'multi-county', title: 'Multi County', status: 'under-review' }
         ]
     },
     {
         id: 'datacenter',
         title: 'Datacenter',
-        status: 'planned',
+        status: 'under-review',
         summary: 'Thermal-aware operation of high-performance computing environments.',
         subtopics: []
     },
