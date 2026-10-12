@@ -1733,16 +1733,6 @@ footer {
     text-align: right;
 }
 
-.callout {
-    display: flex;
-    gap: 0.9rem;
-    align-items: flex-start;
-    margin-top: 2rem;
-    padding: 1rem 1.25rem;
-    border-radius: 10px;
-    background-color: #eaf4f9;
-}
-
 @media (max-width: 576px) {
         .bar-row {
         grid-template-columns: 6rem 1fr auto;
@@ -1982,7 +1972,6 @@ header {
 .sidebar-main .lead,
 .sidebar-main .project-title,
 .sidebar-main .fact-list,
-.sidebar-main .callout p,
 .sidebar-main .planned-note {
     font-size: 1rem;
     line-height: 1.7;
