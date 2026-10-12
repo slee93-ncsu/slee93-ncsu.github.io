@@ -14,7 +14,7 @@ This is a static site (no build step) based on the
 | Biography, research, projects, experience, education, honors | `index.html` (one `<section>` each) |
 | CV PDF                                 | `assets/CV_SeungminLee.pdf`                        |
 | Theme colors                           | `:root` variables at the top of `styles.css`       |
-| Ongoing research page                  | `research/index.html` (served at `/research/`)     |
+| Research page                          | `research/index.html` (served at `/research/`)     |
 
 Each publication entry has a `type` of `journal` or `conference`, which drives the filter buttons. Wrap your own name in `<strong><u>…</u></strong>` in `authors`; entries whose author list starts with it get the "First Author" filter.
 

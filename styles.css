@@ -1905,3 +1905,63 @@ footer {
         grid-template-columns: 6rem 1fr auto;
     }
 }
+
+/* Research status badges */
+.status-badge {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.status-completed {
+    background-color: #eaf4f9;
+    color: var(--primary-color);
+}
+
+.status-ongoing {
+    background-color: var(--primary-strong);
+    color: #fff;
+}
+
+.status-planned {
+    background-color: #eceff1;
+    color: var(--light-text);
+}
+
+.nav-status {
+    display: inline-block;
+    margin-left: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--light-text);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.planned-note {
+    color: var(--light-text);
+    margin-bottom: 1rem;
+}
+
+.subtopic-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.subtopic-chips .chip {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.section-link {
+    margin-top: 1.5rem;
+    font-weight: 500;
+}

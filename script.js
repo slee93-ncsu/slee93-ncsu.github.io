@@ -367,9 +367,9 @@ function makeAllLinksOpenInNewTab() {
     // Loop through each link
     links.forEach(link => {
         const href = link.getAttribute('href');
-        // Skip in-page anchors (#...), links without href, and the top menu,
-        // whose links move between pages of this site
-        if (href && !href.startsWith('#') && !link.closest('nav')) {
+        // Skip in-page anchors (#...), links without href, the top menu and
+        // links marked data-same-tab, which move between pages of this site
+        if (href && !href.startsWith('#') && !link.closest('nav') && !link.hasAttribute('data-same-tab')) {
             // Set target to _blank to open in a new tab
             link.setAttribute('target', '_blank');
         }
