@@ -25,6 +25,13 @@ window.RESEARCH_TOPICS = [
         ]
     },
     {
+        id: 'heat-pump-identification',
+        title: 'Heat Pump Identification',
+        status: 'ongoing',
+        summary: 'Identifying heat-pump loads at the distribution-feeder level with data-driven methods, and building load profiles for transmission and distribution system models.',
+        subtopics: []
+    },
+    {
         id: 'datacenter',
         title: 'Datacenter',
         status: 'under-review',
