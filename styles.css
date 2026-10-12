@@ -2053,3 +2053,23 @@ footer {
 .nav-status-reviewed {
     color: #2b6b43;
 }
+
+/* Header profile box: smaller name and affiliation text */
+.profile-info h1 {
+    font-size: 2rem;
+}
+
+.profile-info .subtitle {
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+    .profile-info h1 {
+        font-size: 1.65rem;
+    }
+
+    .profile-info .subtitle {
+        font-size: 0.98rem;
+    }
+}
