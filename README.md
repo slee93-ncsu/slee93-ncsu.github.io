@@ -25,6 +25,14 @@ Each publication entry has a `type` of `journal` or `conference`, which drives t
 
 Pages in subfolders reuse the shared `styles.css`, `script.js` and `data/` files; `<body data-root="../../">` tells the script where the site root is. To list publications on a page, add `<div class="related-publications publications-list" data-pubs="P5,C13"></div>`; the numbers refer to entries in `data/publications.json`.
 
+## Browser caching
+
+HTML pages load `styles.css`, `script.js`, and `data/research-topics.js` with a version tag (`?v=20261012a`). After editing any of those files, change the tag in every HTML page so visitors get the new file instead of a cached copy:
+
+```bash
+grep -rl '?v=' --include=*.html . | xargs sed -i 's/?v=[0-9a-z]*/?v=NEW_TAG/g'
+```
+
 ## Adding a profile photo
 
 1. Save the photo as `assets/profile.jpg` (a portrait around 600×800 px works well).
