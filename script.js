@@ -443,9 +443,6 @@ const RESEARCH_STATUS_LABELS = {
     reviewed: 'Reviewed'
 };
 
-// Statuses also shown as a small label next to the item in the side menu
-const RESEARCH_NAV_STATUSES = ['planned', 'under-review', 'reviewed'];
-
 // Fill <nav class="side-nav" data-current="..."> on research pages from
 // window.RESEARCH_TOPICS (data/research-topics.js). data-current is a topic id
 // or "overview". Links within the current page are #anchors so the scroll
@@ -465,12 +462,6 @@ function renderResearchNav() {
         a.href = href;
         a.textContent = text;
         if (options.current) a.classList.add('current');
-        if (RESEARCH_NAV_STATUSES.includes(options.status)) {
-            const tag = document.createElement('span');
-            tag.className = 'nav-status nav-status-' + options.status;
-            tag.textContent = RESEARCH_STATUS_LABELS[options.status];
-            a.append(' ', tag);
-        }
         li.appendChild(a);
         parent.appendChild(li);
         return li;
@@ -482,12 +473,12 @@ function renderResearchNav() {
     window.RESEARCH_TOPICS.forEach(topic => {
         const isCurrent = topic.id === current;
         const pageHref = root + 'research/' + topic.id + '/';
-        const li = addLink(ul, isCurrent ? '#' + topic.id : pageHref, topic.title, { current: isCurrent, status: topic.status });
+        const li = addLink(ul, isCurrent ? '#' + topic.id : pageHref, topic.title, { current: isCurrent });
         if (topic.subtopics && topic.subtopics.length > 0) {
             const sub = document.createElement('ul');
             sub.className = 'sub-links';
             topic.subtopics.forEach(st => {
-                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title, { status: st.status });
+                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title);
             });
             li.appendChild(sub);
         }
