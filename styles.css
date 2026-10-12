@@ -2129,8 +2129,8 @@ header {
     gap: 0.4rem;
     padding: 1.1rem 1.25rem;
     border-radius: 12px;
-    border: 1px solid #d6e9f2;
-    background-color: #f3f9fc;
+    border: 1px solid var(--border-color);
+    background-color: #fff;
     color: var(--text-color);
     text-decoration: none;
     transition: border-color 0.2s;
@@ -2305,9 +2305,7 @@ header {
 
 .rack-note {
     padding: 0.8rem 1rem;
-    border-left: 4px solid;
-    background-color: #fafbfc;
-    border-radius: 0 8px 8px 0;
+    border-left: 3px solid;
 }
 
 .rack-note-top {
@@ -2356,4 +2354,8 @@ header {
     .rack {
         width: 96px;
     }
+}
+
+.doc-figure + .fact-list {
+    margin-top: 1rem;
 }

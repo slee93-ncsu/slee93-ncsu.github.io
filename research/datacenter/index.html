@@ -45,19 +45,8 @@
                     </a>
                 </div>
 
-                <h3 class="block-title">The facility</h3>
-                <figure class="doc-figure">
-                    <a href="img/rack-layout.png"><img src="img/rack-layout.png" alt="Schematic layout of 49 compute racks in rows A, B and C separated by alternating cold and hot aisles, with three non-compute positions, CRAC units 5 and 6, and CRAC units 1 to 4 with direct free cooling" loading="lazy"></a>
-                    <figcaption>49 racks in three rows between cold and hot aisles, cooled by six CRAC units (four with direct free cooling) and rear-door heat exchangers. Each node is located by row, horizontal position <i>x</i>, and vertical slot <i>z</i> (0 = bottom, 19 = top). Adapted from Seyedkazemi Ardebili (2022); not to scale.</figcaption>
-                </figure>
-                <ul class="fact-list">
-                    <li><b>Data:</b> public operational dataset from a GPU-based HPC facility (Borghesi et al. 2023) · July 2022</li>
-                    <li><b>Measurements:</b> inlet temperature and total power for all 980 nodes at ~1-min intervals</li>
-                    <li><b>Jobs:</b> 411,348 scheduler records linked to the nodes they ran on</li>
-                </ul>
-
                 <h3 class="block-title" id="finding-location"><span class="finding-num">1</span>Location, not power, sets which nodes run warm</h3>
-                <p class="body-text">Differences in each node's monthly mean inlet temperature were explained step by step. Power and job placement barely help; adding the node's position in the room explains most of the variation.</p>
+                <p class="body-text">Node-to-node differences in monthly mean inlet temperature were explained step by step. Power and job placement barely help; adding the node's position in the room, above all its height in the rack, explains most of the variation, and the pattern holds even for racks left out of fitting (R² 0.531).</p>
                 <div class="model-bars">
                     <p class="chart-caption">Share of node-to-node variation explained (R²)</p>
                     <div class="bar-row" title="Power only: R² 0.049">
@@ -81,18 +70,10 @@
                         <span class="bar-value">0.606</span>
                     </div>
                 </div>
-                <div class="split-row">
-                    <figure class="doc-figure">
-                        <a href="img/vertical-profile.png"><img src="img/vertical-profile.png" alt="Line chart of adjusted inlet-temperature deviation by vertical slot position within a rack, z = 0 to 19. The profile is J-shaped: it falls from about −0.3&nbsp;°C at z = 0 to a minimum of about −1.8&nbsp;°C at z = 3, then rises steadily to about +2.4&nbsp;°C at z = 19. The power + location model and the full model with job-placement variables overlap almost exactly." loading="lazy"></a>
-                        <figcaption>Adjusted inlet temperature by vertical slot. The two models overlap: job placement does not change the profile.</figcaption>
-                    </figure>
-                    <ul class="fact-list">
-                        <li><b>Height matters most:</b> vertical position alone lifts R² from 0.049 to 0.435; horizontal position to 0.227</li>
-                        <li><b>J-shaped profile:</b> coolest near slot 3, warmest at the top, a 4.2&nbsp;°C range</li>
-                        <li><b>Every hour:</b> the top slot was warmest in all 661 analyzed hours</li>
-                        <li><b>New racks:</b> R² 0.531 on racks left out of fitting</li>
-                    </ul>
-                </div>
+                <figure class="doc-figure">
+                    <a href="img/vertical-profile.png"><img class="fig-medium" src="img/vertical-profile.png" alt="Line chart of adjusted inlet-temperature deviation by vertical slot position within a rack, z = 0 to 19. The profile is J-shaped: it falls from about −0.3&nbsp;°C at z = 0 to a minimum of about −1.8&nbsp;°C at z = 3, then rises steadily to about +2.4&nbsp;°C at z = 19. The power + location model and the full model with job-placement variables overlap almost exactly." loading="lazy"></a>
+                    <figcaption>Inlet temperature by vertical slot follows a J-shape: coolest near slot 3, warmest at the top, a 4.2&nbsp;°C range. The top slot was warmest in all 661 analyzed hours, and adding job placement (dashed) does not change the profile.</figcaption>
+                </figure>
 
                 <h3 class="block-title" id="finding-history"><span class="finding-num">2</span>Recent history, not location, predicts the next few minutes</h3>
                 <p class="body-text">Forecasts started from <i>persistence</i>: assume the temperature stays where it is. A gradient-boosted model that learns from each node's last hour of inlet temperature beats it at every horizon.</p>
@@ -108,14 +89,9 @@
                         </tbody>
                     </table>
                 </div>
-                <ul class="fact-list">
-                    <li><b>Location adds little:</b> once recent temperatures are known, location improves 5–10 min forecasts by only ~0.002&nbsp;°C and makes the 30-min forecast worse than persistence</li>
-                    <li><b>Power alone fails:</b> a power-only model (1.79&nbsp;°C error) does no better than one constant guess</li>
-                    <li><b>Why:</b> a node's location is already reflected in its current temperature</li>
-                </ul>
+                <p class="body-text">Once recent temperatures are known, location and power add almost nothing: a node's location is already reflected in its current temperature. Power alone does no better than a constant guess.</p>
 
                 <h3 class="block-title">Warm is not the same as volatile</h3>
-                <p class="body-text">Putting the two findings on one rack shows two different kinds of risk.</p>
                 <div class="rack-view">
                     <div class="rack-col">
                         <div class="rack" role="img" aria-label="A 20-slot rack colored by inlet-temperature deviation: the bottom slots are cooler than average, with the coolest near slot 3, and the slots grow warmer toward the top, which is warmest">
@@ -153,19 +129,17 @@
                         </div>
                     </div>
                 </div>
-                <p class="body-text">For monitoring, this suggests two targets: use location to find nodes with sustained thermal exposure, and keep reliable, continuous inlet sensors to anticipate short-term changes. With the full model, misses of 1&nbsp;°C or more (underprediction) fell from 1.01% to 0.79%.</p>
-
-                <h3 class="block-title">Scope</h3>
-                <ul class="fact-list">
-                    <li>One month at one facility; the profiles are facility-specific, not general rules</li>
-                    <li>Associations, not causes: CRAC operation, airflow, and actual GPU utilization were not measured</li>
-                    <li>Cooling control, workload relocation, and energy savings were not evaluated</li>
-                </ul>
+                <p class="body-text">For monitoring, this suggests two targets: use location to find nodes with sustained thermal exposure, and keep reliable, continuous inlet sensors to anticipate short-term changes.</p>
 
                 <h3 class="block-title">Study details</h3>
+                <figure class="doc-figure">
+                    <a href="img/rack-layout.png"><img src="img/rack-layout.png" alt="Schematic layout of 49 compute racks in rows A, B and C separated by alternating cold and hot aisles, with three non-compute positions, CRAC units 5 and 6, and CRAC units 1 to 4 with direct free cooling" loading="lazy"></a>
+                    <figcaption>49 racks in three rows between cold and hot aisles, cooled by six CRAC units (four with direct free cooling) and rear-door heat exchangers. Each node is located by row, horizontal position <i>x</i>, and vertical slot <i>z</i> (0 = bottom, 19 = top). Adapted from Seyedkazemi Ardebili (2022); not to scale.</figcaption>
+                </figure>
                 <ul class="fact-list">
-                    <li><b>Spatial models:</b> regression on node power, job occupancy, requested GPUs, row, and natural cubic splines of <i>x</i> and <i>z</i> · rack-level cross-validation</li>
-                    <li><b>Forecasting:</b> gradient-boosted trees predicting the temperature change 5, 10, and 30 min ahead · trained Jul 1–21, tested Jul 26–31</li>
+                    <li><b>Data:</b> public operational dataset from a GPU-based HPC facility (Borghesi et al. 2023) · July 2022 · 980 nodes at ~1-min intervals · 411,348 job records</li>
+                    <li><b>Methods:</b> spline regression on power, job placement, and position with rack-level cross-validation · gradient-boosted trees forecasting the temperature change 5–30 min ahead</li>
+                    <li><b>Scope:</b> one month at one facility; associations, not causes. Cooling operation, airflow, and GPU utilization were not measured</li>
                     <li><b>Authors:</b> Seungmin Lee, Juwan Ha, Yujin Kim, Jaeyoon Byun, Soolyeon Cho</li>
                 </ul>
             </div>
