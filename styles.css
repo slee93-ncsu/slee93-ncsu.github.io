@@ -2053,3 +2053,54 @@ footer {
 .nav-status-reviewed {
     color: #2b6b43;
 }
+
+/* Header profile box: smaller name and affiliation text */
+.profile-info h1 {
+    font-size: 2rem;
+}
+
+.profile-info .subtitle {
+    font-size: 1.05rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 768px) {
+    .profile-info h1 {
+        font-size: 1.65rem;
+    }
+
+    .profile-info .subtitle {
+        font-size: 0.98rem;
+    }
+}
+
+/* Less space below the contact icons in the header */
+header {
+    padding-bottom: 1.75rem;
+}
+
+/* Small external-page icon next to a menu item (Research → research pages) */
+.nav-links li.nav-with-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.nav-links a.nav-ext {
+    display: inline-flex;
+    align-items: center;
+    height: auto;
+    line-height: 1;
+    padding: 0.2rem;
+    color: var(--primary-strong);
+    border-radius: 4px;
+}
+
+.nav-links a.nav-ext:hover {
+    color: var(--primary-color);
+    background-color: #eaf4f9;
+}
+
+.nav-links a.nav-ext::after {
+    display: none;
+}
