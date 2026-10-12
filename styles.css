@@ -1689,60 +1689,6 @@ footer {
     margin: 2.5rem 0 1rem;
 }
 
-.system-diagram {
-    display: grid;
-    grid-template-columns: 1.15fr auto 1fr auto 1fr auto 1fr;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.sys-box {
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background-color: #fff;
-}
-
-.sys-box h4 {
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-}
-
-.sys-box p,
-.sys-box li {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    line-height: 1.5;
-}
-
-.sys-box ul {
-    padding-left: 1.1rem;
-}
-
-.sys-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.sys-highlight {
-    background-color: #eaf4f9;
-    border-color: var(--accent-color);
-}
-
-.sys-meta {
-    margin-top: 0.5rem;
-    font-size: 0.78rem !important;
-    color: var(--primary-color) !important;
-}
-
-.sys-arrow {
-    color: var(--accent-color);
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-align: center;
-}
-
 .sys-note {
     margin-top: 0.8rem;
     font-size: 0.85rem;
@@ -1843,16 +1789,6 @@ footer {
     padding: 1rem 1.25rem;
     border-radius: 10px;
     background-color: #eaf4f9;
-}
-
-@media (max-width: 992px) {
-    .system-diagram {
-        grid-template-columns: 1fr;
-    }
-
-    .sys-arrow {
-        transform: rotate(90deg);
-    }
 }
 
 @media (max-width: 576px) {
@@ -2078,6 +2014,10 @@ header {
     max-width: 100%;
     width: 720px;
     height: auto;
+}
+
+.doc-figure img.fig-medium {
+    width: 560px;
 }
 
 .doc-figure figcaption {

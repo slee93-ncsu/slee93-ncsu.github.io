@@ -41,43 +41,17 @@
                 </ul>
 
                 <h3 class="block-title">Control system</h3>
-                <div class="system-diagram">
-                    <div class="sys-box sys-input">
-                        <h4>BAS data</h4>
-                        <ul>
-                            <li>Space temperature &amp; setpoint</li>
-                            <li>Supply fan &amp; capacity status</li>
-                            <li>Discharge air temperature</li>
-                            <li>Outdoor air damper, occupancy</li>
-                            <li>Outdoor temperature &amp; humidity, time</li>
-                        </ul>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box">
-                        <h4>ANN models</h4>
-                        <p>Predict hourly heating and cooling energy from 10 selected inputs</p>
-                        <p class="sys-meta">PyTorch · ASHRAE Guideline 14: CV(RMSE) ≤ 15%, NMBE ±10%</p>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box sys-highlight">
-                        <h4>Optimizer</h4>
-                        <p>Minimizes a cost function under comfort constraints at every time step</p>
-                        <p class="sys-meta">CasADi + IPOPT, with the ANN converted to a symbolic function</p>
-                    </div>
-                    <div class="sys-arrow" aria-hidden="true">→</div>
-                    <div class="sys-box sys-output">
-                        <h4>BAS</h4>
-                        <p>Receives the optimal setpoints and runs the HVAC units</p>
-                        <p class="sys-meta">BACnet + TCP/IP · isolated network</p>
-                    </div>
-                </div>
-                <p class="sys-note">Input variables were chosen by correlation with heating or cooling energy (R² &gt; 0.7, or |r| &gt; 0.3 as a secondary criterion), with outdoor conditions and time added to capture weather and daily patterns.</p>
+                <figure class="doc-figure">
+                    <a href="img/toolbox-bas-network.png"><img class="fig-medium" src="img/toolbox-bas-network.png" alt="Network diagram: the toolbox connects to the plant's BAS server over Ethernet, and the BAS server communicates with field controllers over BACnet TCP" loading="lazy"></a>
+                    <figcaption>The toolbox runs the ANN models and optimizer and exchanges data and setpoints with the plant's BAS server over Ethernet; the BAS server talks to the field controllers over BACnet TCP.</figcaption>
+                </figure>
 
                 <h3 class="block-title">Optimal control algorithm</h3>
                 <figure class="doc-figure">
                     <a href="img/ann-optimal-control-flowchart.png"><img src="img/ann-optimal-control-flowchart.png" alt="Flowchart: training data are created in the real building by randomizing compressor staging, outdoor air damper position, fan flow rate and discharge air temperature; the ANN predicts energy; the optimal control variables are chosen within compressor staging 1–2, damper 10–100%, fan flow 10–100% and discharge air temperature 55–63 °F; the values are sent to the BAS" loading="lazy"></a>
                     <figcaption>Training data are created by randomizing controllable variables in the real building; the ANN-predicted energy is then used to choose compressor staging, outdoor air damper position, fan flow rate, and discharge air temperature within their allowable ranges before sending them to the BAS.</figcaption>
                 </figure>
+                <p class="sys-note">Input variables were chosen by correlation with heating or cooling energy (R² &gt; 0.7, or |r| &gt; 0.3 as a secondary criterion), with outdoor conditions and time added to capture weather and daily patterns.</p>
 
                 <h3 class="block-title">Measured energy savings</h3>
                 <div class="compare-grid">
