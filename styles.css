@@ -2027,3 +2027,54 @@ header {
     line-height: 1.55;
     text-align: left;
 }
+
+/* Research pages: two text sizes only.
+   Body text 1rem; secondary text (captions, notes, chart labels) 0.875rem. */
+.sidebar-main .about-content,
+.sidebar-main .lead,
+.sidebar-main .project-title,
+.sidebar-main .fact-list,
+.sidebar-main .callout p,
+.sidebar-main .planned-note {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.sidebar-main .lead {
+    margin-bottom: 1rem;
+}
+
+.sidebar-main .project-title {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-main .doc-figure figcaption,
+.sidebar-main .compare-period,
+.sidebar-main .compare-method,
+.sidebar-main .compare-note,
+.sidebar-main .bar-label,
+.sidebar-main .bar-value {
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.sidebar-main .compare-saving {
+    font-size: 1rem;
+}
+
+.sidebar-main .compare-title {
+    font-size: 1rem;
+}
+
+/* Smaller figures */
+.doc-figure img {
+    width: 520px;
+}
+
+.doc-figure img.fig-medium {
+    width: 420px;
+}
+
+.sidebar-main .status-badge {
+    font-size: 0.875rem;
+}
