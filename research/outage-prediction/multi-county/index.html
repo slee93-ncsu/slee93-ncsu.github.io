@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi County · Power Outage Prediction | Seungmin Lee</title>
-    <meta name="description" content="Multi County (Power Outage Prediction): research by Seungmin Lee.">
+    <meta name="description" content="Single- and multi-county Temporal Fusion Transformer forecasting of weather-induced power outages in Wake and Guilford Counties, NC: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../../styles.css?v=20261013f">
+    <link rel="stylesheet" href="../../../styles.css?v=20261013g">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,7 +29,98 @@
             <div class="container">
                 <p class="breadcrumb"><a href="../" data-same-tab>Power Outage Prediction</a></p>
                 <h2 class="section-title">Multi County <span class="status-badge status-under-review">Under review</span></h2>
-                <p class="planned-note">Details coming soon.</p>
+                <p class="project-title">Forecasting Rare, Large-Scale Weather-Induced Power Outages Using Temporal Fusion Transformers: A Multi-County Study for Building Energy Resilience</p>
+                <p class="lead">This study presents a county-level outage forecasting framework that integrates meteorological and outage data to support building energy resilience during extreme weather events. Using 15-minute time-series data from Wake and Guilford Counties, North Carolina, the Temporal Fusion Transformer (TFT) was developed in single- and multi-county learning configurations and benchmarked against a Long Short-Term Memory (LSTM) baseline.</p>
+
+                <h3 class="block-title major">Study area</h3>
+                <p class="body-text">Both counties belong to climate zone 3A (Warm-Humid), but they differ in population structure, urbanization, industrial composition, and utility service territories.</p>
+                <div class="question-grid">
+                    <div class="question-card">
+                        <span class="q-label">Wake County</span>
+                        <span class="q-text">~1.1 million people · residential and technology-sector demand</span>
+                        <span class="body-note">Medium-scale outages occur more frequently, and its largest events substantially exceed those in Guilford County.</span>
+                    </div>
+                    <div class="question-card">
+                        <span class="q-label">Guilford County</span>
+                        <span class="q-text">~540,000 people · manufacturing and logistics</span>
+                        <span class="body-note">A higher proportion of small-scale outages, consistent with its industrial-park-oriented spatial structure.</span>
+                    </div>
+                </div>
+
+                <h3 class="block-title major">Findings</h3>
+                <h4 class="finding-title"><span class="finding-num">1</span>The TFT outperformed the LSTM across most metrics in both counties</h4>
+                <p class="body-text">The TFT more accurately reproduced the timing and onset of major outage peaks, and its uncertainty intervals adjusted adaptively to event magnitude. The LSTM tended to smooth them out.</p>
+                <div class="chart-pair fit">
+                    <figure class="doc-figure">
+                        <a href="img/wake-lstm.png"><img src="img/wake-lstm.png" alt="Wake County, August 2023: observed outages peak near 87,000 customers on August 7 and 18,000 on August 15, while the LSTM predicted median stays near zero." loading="lazy"></a>
+                        <figcaption><b>Wake · LSTM.</b> Did not capture the major outage peak (about 80,000 affected customers).</figcaption>
+                    </figure>
+                    <figure class="doc-figure">
+                        <a href="img/wake-tft.png"><img src="img/wake-tft.png" alt="Wake County, August 2023: the TFT predicted median rises to about 63,000 during the 87,000-customer peak and to about 34,000 during the 18,000-customer peak, with a wide 80% prediction interval." loading="lazy"></a>
+                        <figcaption><b>Wake · TFT.</b> Reproduced the timing and shape of the outage peaks more closely.</figcaption>
+                    </figure>
+                </div>
+                <div class="chart-pair fit">
+                    <figure class="doc-figure">
+                        <a href="img/guilford-lstm.png"><img src="img/guilford-lstm.png" alt="Guilford County, August 2023: observed outages peak near 23,000 customers on August 15, while the LSTM predicted median stays near zero during that event." loading="lazy"></a>
+                        <figcaption><b>Guilford · LSTM.</b> Tended to flatten the sharp rise and fall of medium- and large-scale outages.</figcaption>
+                    </figure>
+                    <figure class="doc-figure">
+                        <a href="img/guilford-tft.png"><img src="img/guilford-tft.png" alt="Guilford County, August 2023: the TFT predicted median rises to about 8,000 during the 23,000-customer peak and follows its decline, with an 80% prediction interval up to about 11,000." loading="lazy"></a>
+                        <figcaption><b>Guilford · TFT.</b> Captured the timing and trends of major peaks and adjusted its uncertainty bounds.</figcaption>
+                    </figure>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>County</th><th>LSTM R²</th><th>TFT R²</th><th>LSTM MAE</th><th>TFT MAE</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Wake</td><td>−0.04</td><td class="num-good">0.66</td><td>1,782.75</td><td class="num-good">1,029.44</td></tr>
+                            <tr><td>Guilford</td><td>−0.08</td><td class="num-good">0.42</td><td>899.39</td><td class="num-good">526.90</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="finding-title"><span class="finding-num">2</span>Multi-county learning helped Guilford County, but not Wake County</h4>
+                <p class="body-text">Multi-county training improved performance across all metrics in Guilford County, whereas in Wake County it reduced central-range accuracy and tended to underestimate the largest events. Across both counties, the Multi-TFT reduced the q0.90 Quantile RMSE.</p>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>County</th><th>Model</th><th>R²</th><th>MAE</th><th>Quantile RMSE (q0.90)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td rowspan="2">Wake</td><td>TFT</td><td class="num-good">0.66</td><td class="num-good">1,029.44</td><td>9,369.08</td></tr>
+                            <tr><td>Multi-TFT</td><td>0.44</td><td>1,075.69</td><td class="num-good">4,329.62</td></tr>
+                            <tr><td rowspan="2">Guilford</td><td>TFT</td><td>0.42</td><td>526.90</td><td>1,729.10</td></tr>
+                            <tr><td>Multi-TFT</td><td class="num-good">0.52</td><td class="num-good">468.48</td><td class="num-good">1,650.39</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart-pair fit">
+                    <figure class="doc-figure">
+                        <a href="img/wake-rank.png"><img src="img/wake-rank.png" alt="Rank-frequency plot for Wake County on log axes. The observed curve starts near 90,000; the TFT starts near 63,000 and stays close to observed through the top 100 ranks; the Multi-TFT starts near 25,000 and stays below the observed curve." loading="lazy"></a>
+                        <figcaption><b>Wake.</b> The Multi-TFT showed a consistent tendency toward underestimation, possibly influenced by Guilford County's lower extreme-event magnitudes.</figcaption>
+                    </figure>
+                    <figure class="doc-figure">
+                        <a href="img/guilford-rank.png"><img src="img/guilford-rank.png" alt="Rank-frequency plot for Guilford County on log axes. The observed curve starts near 23,000; both the Multi-TFT and TFT start near 12,000, with the Multi-TFT closer to observed across the top 200 ranks." loading="lazy"></a>
+                        <figcaption><b>Guilford.</b> Both models followed broadly similar trends, with the Multi-TFT fitting the observed curve somewhat better across the low-to-mid ranks.</figcaption>
+                    </figure>
+                </div>
+                <p class="body-text">Rank–Frequency distributions of predicted (median) and observed outages. Events are ranked from largest (left) to smallest (right) on logarithmic axes.</p>
+
+                <h3 class="block-title major">Takeaway</h3>
+                <h4 class="finding-title">Single- and multi-county models are complementary</h4>
+                <p class="body-text">The single-county model is well suited to high-resolution, region-specific forecasting, particularly in regions with pronounced extreme-event tails, while the multi-county model can offer broader distributional representation where cross-regional data diversity is beneficial. The value of multi-county learning depends on the load composition and outage characteristics of each region.</p>
+
+                <h3 class="block-title major">Study details</h3>
+                <ul class="fact-list">
+                    <li><b>Outage data:</b> DOE EAGLE-I · 15-minute intervals, 2018–2023 · weather-related events only (NOAA, PNNL)</li>
+                    <li><b>Weather data:</b> ASOS stations KRDU (Wake) and KGSO (Guilford) · population and households as static covariates; a county identifier in the multi-county model</li>
+                    <li><b>Setup:</b> summer season (June–October) · both counties tested on August 2023</li>
+                    <li><b>Limitations:</b> one season and two counties; physical constraints of the power network and cascading failures are not explicitly represented</li>
+                </ul>
+                <div class="related-publications publications-list" data-pubs="P5"></div>
             </div>
         </section>
     </main>
@@ -41,8 +132,8 @@
         </div>
     </footer>
 
-    <script src="../../../data/research-topics.js?v=20261013f"></script>
-    <script src="../../../script.js?v=20261013f"></script>
+    <script src="../../../data/research-topics.js?v=20261013g"></script>
+    <script src="../../../script.js?v=20261013g"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
