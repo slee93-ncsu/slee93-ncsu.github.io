@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single County · Power Outage Prediction | Seungmin Lee</title>
-    <meta name="description" content="Single County (Power Outage Prediction): research by Seungmin Lee.">
+    <meta name="description" content="Forecasting high-impact, low-probability power outages in Wake County, NC, with Temporal Fusion Transformers: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../../styles.css?v=20261013c">
+    <link rel="stylesheet" href="../../../styles.css?v=20261013f">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,7 +29,53 @@
             <div class="container">
                 <p class="breadcrumb"><a href="../" data-same-tab>Power Outage Prediction</a></p>
                 <h2 class="section-title">Single County <span class="status-badge status-reviewed">Reviewed</span></h2>
-                <p class="planned-note">Details coming soon.</p>
+                <p class="project-title">Forecasting High-Impact, Low-Probability Power Outages with Temporal Fusion Transformers: A Case Study of Wake County</p>
+                <p class="lead">This study evaluates the Temporal Fusion Transformer (TFT) for short-term outage prediction in Wake County, North Carolina, benchmarked against a Long Short-Term Memory (LSTM) network.</p>
+
+                <h3 class="block-title major">The challenge</h3>
+                <h4 class="finding-title">Outage data are long-tailed</h4>
+                <p class="body-text">Most outages affected fewer than several dozen customers, while the top 1% included events that impacted thousands to tens of thousands of customers. A quantile forecasting approach was therefore adopted in place of point forecasting, estimating the 10th, 50th, and 90th percentiles.</p>
+
+                <h3 class="block-title major">Findings</h3>
+                <h4 class="finding-title"><span class="finding-num">1</span>TFT outperformed the LSTM across all evaluation metrics</h4>
+                <p class="body-text">TFT achieved an R² of 0.777 and reduced MAE by nearly 50 percent relative to the LSTM, with consistently lower Quantile RMSE across the 10th, 50th, and 90th percentiles. The LSTM yielded an R² close to zero and consistently underrepresented both the timing and magnitude of high-impact events.</p>
+                <div class="figure-stack">
+                    <figure class="doc-figure">
+                        <a href="img/lstm-forecast.png"><img class="fig-wide" src="img/lstm-forecast.png" alt="Time series for August 2023 comparing observed outage counts with LSTM predictions. Observed peaks reach about 87,000 and 18,000 customers, but the LSTM predicted median stays near zero with only a small rise during the largest event." loading="lazy"></a>
+                        <figcaption><b>LSTM.</b> Observed (black) and predicted median (red dashed) outages with the 80% prediction interval, August 2023. The predictions miss both major events.</figcaption>
+                    </figure>
+                    <figure class="doc-figure">
+                        <a href="img/tft-forecast.png"><img class="fig-wide" src="img/tft-forecast.png" alt="Time series for August 2023 comparing observed outage counts with TFT predictions. The TFT predicted median rises to about 47,000 during the 87,000-customer event and tracks the 18,000-customer event, with a wide 80% prediction interval during both events." loading="lazy"></a>
+                        <figcaption><b>TFT.</b> The model closely tracked the timing and scale of high-impact events. Prediction intervals stayed narrow under normal conditions and widened during extreme events.</figcaption>
+                    </figure>
+                </div>
+                <div class="table-wrap">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Model</th><th>R²</th><th>MAE</th><th>Quantile RMSE (10%)</th><th>Quantile RMSE (50%)</th><th>Quantile RMSE (90%)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>LSTM</td><td>−0.004</td><td>1,600.483</td><td>8,917.003</td><td>8,790.522</td><td>8,412.612</td></tr>
+                            <tr><td><b>TFT</b></td><td class="num-good">0.777</td><td class="num-good">837.665</td><td class="num-good">7,251.650</td><td class="num-good">4,218.045</td><td class="num-good">7,265.227</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="finding-title"><span class="finding-num">2</span>Atmospheric pressure and recent temporal context were dominant predictors</h4>
+                <p class="body-text">The variable selection network showed that atmospheric pressure (altimeter) kept a relatively stable and elevated importance, with a pronounced increase before outage events, suggesting it may serve as a leading indicator. The importance of the relative time index surged around sharp increases in outage magnitude.</p>
+                <figure class="doc-figure">
+                    <a href="img/variable-importance.png"><img class="fig-wide" src="img/variable-importance.png" alt="Upper panel: observed outage counts and TFT median predictions over August 2023. Lower panel: importance over time of the top five input variables. Altimeter stays around 0.13 to 0.18 and rises before outage events; relative time index surges to about 0.23 after the two major events; time of day, hour, and visibility stay between about 0.04 and 0.08." loading="lazy"></a>
+                    <figcaption>TFT median predictions and observed outages (upper), and importance of the top five input variables over time (lower).</figcaption>
+                </figure>
+
+                <h3 class="block-title major">Study details</h3>
+                <ul class="fact-list">
+                    <li><b>Outage data:</b> DOE EAGLE-I, Wake County, NC · 15-minute intervals · weather-related events only (NOAA, PNNL)</li>
+                    <li><b>Weather data:</b> ASOS meteorological observations and five composite variables · population and households as static covariates</li>
+                    <li><b>Setup:</b> summer months (June–October), 2018–2023 · tested on August 2023 · 2-day input, 6-hour forecast horizon</li>
+                    <li><b>Limitations:</b> extreme outages are rare in the training data, and grid topology and infrastructure condition were not included</li>
+                </ul>
+                <div class="related-publications publications-list" data-pubs="C13"></div>
             </div>
         </section>
     </main>
@@ -41,8 +87,8 @@
         </div>
     </footer>
 
-    <script src="../../../data/research-topics.js?v=20261013c"></script>
-    <script src="../../../script.js?v=20261013c"></script>
+    <script src="../../../data/research-topics.js?v=20261013f"></script>
+    <script src="../../../script.js?v=20261013f"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

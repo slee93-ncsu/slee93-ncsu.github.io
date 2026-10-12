@@ -2455,3 +2455,36 @@ header {
 .research-cards[data-topic] {
     margin-top: 1.5rem;
 }
+
+/* Full-width figure for wide charts */
+.sidebar-main .doc-figure img.fig-wide {
+    width: 100%;
+    max-width: 900px;
+}
+
+.related-publications {
+    margin-top: 1.5rem;
+}
+
+/* Wide figures stacked full width (shared time axis reads top to bottom) */
+.figure-stack {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Side-by-side figures that fill the box width instead of a fixed height */
+.chart-pair.fit .doc-figure > a {
+    height: auto;
+    flex: 1;
+}
+
+.chart-pair.fit .doc-figure img {
+    width: 100%;
+}
+
+.doc-figure + .body-text,
+.figure-stack + .body-text,
+.chart-pair + .body-text {
+    margin-top: 1.25rem;
+}

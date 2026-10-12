@@ -20,7 +20,7 @@ window.RESEARCH_TOPICS = [
         status: 'ongoing',
         summary: 'Forecasting rare, large-scale weather-induced power outages for single and multiple counties.',
         subtopics: [
-            { id: 'single-county', title: 'Single County', status: 'reviewed' },
+            { id: 'single-county', title: 'Single County', status: 'reviewed', summary: 'Temporal Fusion Transformer forecasts of weather-related outages in Wake County, NC: R² of 0.777 and nearly 50% lower MAE than an LSTM.' },
             { id: 'multi-county', title: 'Multi County', status: 'under-review' }
         ]
     },
