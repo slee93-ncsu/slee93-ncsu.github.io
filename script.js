@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Build research menus and cards first so the nav handlers below see them
+    renderResearchNav();
+    renderResearchCards();
+
     // Load profile information
     loadProfileInfo();
 
@@ -14,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load publications data from JSON file
     loadPublications();
+    loadRelatedPublications();
     
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
@@ -87,15 +92,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Highlight the right menu item when the page opens mid-way (e.g. via #anchor)
+    window.dispatchEvent(new Event('scroll'));
 });
+
+// Path from the current page to the site root. Pages in a subfolder set
+// <body data-root="../"> so shared data and assets resolve correctly.
+function siteRoot() {
+    return document.body.dataset.root || '';
+}
 
 // Function to load profile information
 function loadProfileInfo() {
-    let profileJsonPath = 'data/profile-info.json';
-    let isSubpage = window.location.pathname.includes('/pages/');
-    if (isSubpage) {
-        profileJsonPath = '../data/profile-info.json';
-    }
+    const root = siteRoot();
+    const isSubpage = root !== '';
+    const profileJsonPath = root + 'data/profile-info.json';
 
     // Get profile-info container
     const profileInfoContainer = document.querySelector('.profile-info');
@@ -128,7 +140,7 @@ function loadProfileInfo() {
                 const anchor = document.createElement('a');
                 // Adjust URL paths for subpages
                 if (isSubpage && link.url.startsWith('assets/')) {
-                    anchor.href = '../' + link.url;
+                    anchor.href = root + link.url;
                 } else {
                     anchor.href = link.url;
                 }
@@ -143,7 +155,7 @@ function loadProfileInfo() {
                 // Fix SVG icon paths for subpages
                 let iconHtml = link.icon;
                 if (isSubpage && link.type === 'dblp') {
-                    iconHtml = iconHtml.replace('src="assets/', 'src="../assets/');
+                    iconHtml = iconHtml.replace('src="assets/', 'src="' + root + 'assets/');
                 }
                 
                 anchor.innerHTML = iconHtml;
@@ -156,8 +168,7 @@ function loadProfileInfo() {
             // Update profile image if there's a profile-image container
             const profileImageContainer = document.querySelector('.profile-image img');
             if (profileImageContainer && data.profileImage) {
-                profileImageContainer.src = isSubpage ? 
-                    '../' + data.profileImage : data.profileImage;
+                profileImageContainer.src = root + data.profileImage;
                 profileImageContainer.alt = data.name;
             }
         })
@@ -166,85 +177,100 @@ function loadProfileInfo() {
         });
 }
 
-// Function to load publications from JSON
-function loadPublications() {
-    let publicationsJsonPath = 'data/publications.json';
-    if (window.location.pathname.includes('/pages/')) {
-        publicationsJsonPath = '../data/publications.json';
+// Build the card for one publication entry from data/publications.json
+function createPublicationElement(pub) {
+    const pubElement = document.createElement('div');
+    const classes = ['publication', pub.type];
+    if (pub.isFirstAuthor) classes.push('first-author');
+    pubElement.className = classes.join(' ');
+
+    const numberElement = document.createElement('span');
+    numberElement.className = 'pub-number';
+    numberElement.textContent = pub.number;
+
+    const contentElement = document.createElement('div');
+    contentElement.className = 'pub-content';
+
+    const titleElement = document.createElement('h3');
+    titleElement.textContent = pub.title;
+    contentElement.appendChild(titleElement);
+
+    const authorsElement = document.createElement('p');
+    authorsElement.className = 'authors';
+    authorsElement.innerHTML = pub.authors;
+    contentElement.appendChild(authorsElement);
+
+    if (pub.venue) {
+        const venueElement = document.createElement('p');
+        venueElement.className = 'venue';
+        venueElement.textContent = pub.venue;
+        contentElement.appendChild(venueElement);
     }
 
+    const tagsContainer = document.createElement('div');
+    tagsContainer.className = 'pub-tags';
+    pub.tags.forEach(tag => {
+        if (tag.link) {
+            const tagLink = document.createElement('a');
+            tagLink.href = tag.link;
+            tagLink.className = `tag ${tag.class}`;
+            tagLink.textContent = tag.text;
+            if (!tag.link.startsWith('#')) {
+                tagLink.setAttribute('target', '_blank');
+            }
+            tagsContainer.appendChild(tagLink);
+        } else {
+            const tagSpan = document.createElement('span');
+            tagSpan.className = `tag ${tag.class}`;
+            tagSpan.textContent = tag.text;
+            tagsContainer.appendChild(tagSpan);
+        }
+    });
+    contentElement.appendChild(tagsContainer);
+
+    pubElement.appendChild(numberElement);
+    pubElement.appendChild(contentElement);
+    return pubElement;
+}
+
+function fetchPublications() {
+    return fetch(siteRoot() + 'data/publications.json', { cache: 'no-cache' })
+        .then(response => response.json());
+}
+
+// Function to load publications from JSON
+function loadPublications() {
     const publicationsList = document.querySelector('.publications-list');
     if (!publicationsList) return;
-    
-    // Clear existing publications
+
     publicationsList.innerHTML = '';
-    
-    fetch(publicationsJsonPath, { cache: 'no-cache' })
-        .then(response => response.json())
+
+    fetchPublications()
         .then(publications => {
             publications.forEach(pub => {
-                const pubElement = document.createElement('div');
-                const classes = ['publication', pub.type];
-                if (pub.isFirstAuthor) classes.push('first-author');
-                pubElement.className = classes.join(' ');
-                
-                // Create publication number
-                const numberElement = document.createElement('span');
-                numberElement.className = 'pub-number';
-                numberElement.textContent = pub.number;
-                
-                // Create publication content container
-                const contentElement = document.createElement('div');
-                contentElement.className = 'pub-content';
-                
-                // Add title
-                const titleElement = document.createElement('h3');
-                titleElement.textContent = pub.title;
-                contentElement.appendChild(titleElement);
-                
-                // Add authors
-                const authorsElement = document.createElement('p');
-                authorsElement.className = 'authors';
-                authorsElement.innerHTML = pub.authors;
-                contentElement.appendChild(authorsElement);
-                
-                // Add venue if it exists
-                if (pub.venue) {
-                    const venueElement = document.createElement('p');
-                    venueElement.className = 'venue';
-                    venueElement.textContent = pub.venue;
-                    contentElement.appendChild(venueElement);
-                }
-                
-                // Add tags
-                const tagsContainer = document.createElement('div');
-                tagsContainer.className = 'pub-tags';
-                
-                pub.tags.forEach(tag => {
-                    if (tag.link) {
-                        const tagLink = document.createElement('a');
-                        tagLink.href = tag.link;
-                        tagLink.className = `tag ${tag.class}`;
-                        tagLink.textContent = tag.text;
-                        // Add target="_blank" for links
-                        if (!tag.link.startsWith('#')) {
-                            tagLink.setAttribute('target', '_blank');
-                        }
-                        tagsContainer.appendChild(tagLink);
-                    } else {
-                        const tagSpan = document.createElement('span');
-                        tagSpan.className = `tag ${tag.class}`;
-                        tagSpan.textContent = tag.text;
-                        tagsContainer.appendChild(tagSpan);
-                    }
+                publicationsList.appendChild(createPublicationElement(pub));
+            });
+        })
+        .catch(error => {
+            console.error('Error loading publications data:', error);
+        });
+}
+
+// Fill each <div class="related-publications" data-pubs="P5,C13"> with the
+// listed entries from data/publications.json, in the order given.
+function loadRelatedPublications() {
+    const containers = document.querySelectorAll('.related-publications[data-pubs]');
+    if (containers.length === 0) return;
+
+    fetchPublications()
+        .then(publications => {
+            const byNumber = new Map(publications.map(pub => [pub.number, pub]));
+            containers.forEach(container => {
+                container.innerHTML = '';
+                container.dataset.pubs.split(',').map(id => id.trim()).forEach(id => {
+                    const pub = byNumber.get(id);
+                    if (pub) container.appendChild(createPublicationElement(pub));
                 });
-                
-                contentElement.appendChild(tagsContainer);
-                
-                // Combine elements and add to publications list
-                pubElement.appendChild(numberElement);
-                pubElement.appendChild(contentElement);
-                publicationsList.appendChild(pubElement);
             });
         })
         .catch(error => {
@@ -348,8 +374,9 @@ function makeAllLinksOpenInNewTab() {
     // Loop through each link
     links.forEach(link => {
         const href = link.getAttribute('href');
-        // Skip navigation links (links that start with #) and links without href
-        if (href && !href.startsWith('#')) {
+        // Skip in-page anchors (#...), links without href, the top menu and
+        // links marked data-same-tab, which move between pages of this site
+        if (href && !href.startsWith('#') && !link.closest('nav') && !link.hasAttribute('data-same-tab')) {
             // Set target to _blank to open in a new tab
             link.setAttribute('target', '_blank');
         }
@@ -408,3 +435,111 @@ function setupLinkObserver() {
     // Start observing the target node for configured mutations
     observer.observe(targetNode, config);
 } 
+const RESEARCH_STATUS_LABELS = {
+    completed: 'Completed',
+    ongoing: 'Ongoing',
+    planned: 'Planned',
+    'under-review': 'Under review',
+    reviewed: 'Reviewed'
+};
+
+// Statuses also shown as a small label next to the item in the side menu
+const RESEARCH_NAV_STATUSES = ['planned', 'under-review', 'reviewed'];
+
+// Fill <nav class="side-nav" data-current="..."> on research pages from
+// window.RESEARCH_TOPICS (data/research-topics.js). data-current is a topic id
+// or "overview". Links within the current page are #anchors so the scroll
+// highlighting works; links to other pages point at their folders.
+function renderResearchNav() {
+    const nav = document.querySelector('.side-nav[data-current]');
+    if (!nav || !window.RESEARCH_TOPICS) return;
+
+    const root = siteRoot();
+    const current = nav.dataset.current;
+    const ul = document.createElement('ul');
+    ul.className = 'nav-links';
+
+    const addLink = (parent, href, text, options = {}) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = href;
+        a.textContent = text;
+        if (options.current) a.classList.add('current');
+        if (RESEARCH_NAV_STATUSES.includes(options.status)) {
+            const tag = document.createElement('span');
+            tag.className = 'nav-status nav-status-' + options.status;
+            tag.textContent = RESEARCH_STATUS_LABELS[options.status];
+            a.append(' ', tag);
+        }
+        li.appendChild(a);
+        parent.appendChild(li);
+        return li;
+    };
+
+    addLink(ul, root || './', 'Home');
+    addLink(ul, current === 'overview' ? '#overview' : root + 'research/', 'Overview', { current: current === 'overview' });
+
+    window.RESEARCH_TOPICS.forEach(topic => {
+        const isCurrent = topic.id === current;
+        const pageHref = root + 'research/' + topic.id + '/';
+        const li = addLink(ul, isCurrent ? '#' + topic.id : pageHref, topic.title, { current: isCurrent, status: topic.status });
+        if (topic.subtopics && topic.subtopics.length > 0) {
+            const sub = document.createElement('ul');
+            sub.className = 'sub-links';
+            topic.subtopics.forEach(st => {
+                addLink(sub, (isCurrent ? '' : pageHref) + '#' + st.id, st.title, { status: st.status });
+            });
+            li.appendChild(sub);
+        }
+    });
+
+    nav.innerHTML = '';
+    nav.appendChild(ul);
+}
+
+// Fill <div class="research-cards"> on the overview page with one card per topic.
+function renderResearchCards() {
+    const container = document.querySelector('.research-cards');
+    if (!container || !window.RESEARCH_TOPICS) return;
+
+    const root = siteRoot();
+    container.innerHTML = '';
+    window.RESEARCH_TOPICS.forEach(topic => {
+        const card = document.createElement('a');
+        card.className = 'research-card';
+        card.href = root + 'research/' + topic.id + '/';
+        card.setAttribute('data-same-tab', '');
+
+        const head = document.createElement('div');
+        head.className = 'research-card-head';
+        const title = document.createElement('h3');
+        title.textContent = topic.title;
+        const badge = document.createElement('span');
+        badge.className = 'status-badge status-' + topic.status;
+        badge.textContent = RESEARCH_STATUS_LABELS[topic.status] || topic.status;
+        head.append(title, badge);
+
+        const summary = document.createElement('p');
+        summary.textContent = topic.summary;
+
+        card.append(head, summary);
+        if (topic.subtopics && topic.subtopics.length > 0) {
+            const chips = document.createElement('div');
+            chips.className = 'subtopic-chips';
+            topic.subtopics.forEach(st => {
+                const chip = document.createElement('span');
+                chip.className = 'chip';
+                chip.textContent = st.title;
+                if (st.status) {
+                    const tag = document.createElement('span');
+                    tag.className = 'chip-status status-' + st.status;
+                    tag.textContent = RESEARCH_STATUS_LABELS[st.status] || st.status;
+                    chip.append(' ', tag);
+                }
+                chips.appendChild(chip);
+            });
+            card.appendChild(chips);
+        }
+        container.appendChild(card);
+    });
+}

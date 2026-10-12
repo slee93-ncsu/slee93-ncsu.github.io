@@ -14,8 +14,16 @@ This is a static site (no build step) based on the
 | Biography, research, projects, experience, education, honors | `index.html` (one `<section>` each) |
 | CV PDF                                 | `assets/CV_SeungminLee.pdf`                        |
 | Theme colors                           | `:root` variables at the top of `styles.css`       |
+| Research overview and topic pages      | `research/index.html`, `research/<topic>/index.html` |
+| Research topics (menu, overview cards) | `data/research-topics.js`                          |
 
 Each publication entry has a `type` of `journal` or `conference`, which drives the filter buttons. Wrap your own name in `<strong><u>…</u></strong>` in `authors`; entries whose author list starts with it get the "First Author" filter.
+
+## Research pages
+
+`/research/` is an overview with one card per topic, and each topic has its own page at `research/<topic>/`. The side menu and the overview cards are generated from `data/research-topics.js`, so to add a topic or change its title, summary, status (`completed`, `ongoing`, `planned`) or subtopics, edit that file and create `research/<topic>/index.html` by copying an existing topic page and changing `data-current` and the content.
+
+Pages in subfolders reuse the shared `styles.css`, `script.js` and `data/` files; `<body data-root="../../">` tells the script where the site root is. To list publications on a page, add `<div class="related-publications publications-list" data-pubs="P5,C13"></div>`; the numbers refer to entries in `data/publications.json`.
 
 ## Adding a profile photo
 

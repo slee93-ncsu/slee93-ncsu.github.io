@@ -1,0 +1,48 @@
+// Research topics shown in the research side menu and on the /research/ overview.
+// Each topic has its own page at research/<id>/index.html.
+//   status:    'completed' | 'ongoing' | 'planned' | 'under-review' | 'reviewed'
+//   subtopics: sections inside the topic page ({ id, title, status }), linked from the menu
+window.RESEARCH_TOPICS = [
+    {
+        id: 'building-grid-resiliency',
+        title: 'Building–Grid Resiliency',
+        status: 'ongoing',
+        summary: 'How buildings and distribution grids behave through weather-driven outages and recovery, from a single house to the feeder level.',
+        subtopics: [
+            { id: 'review', title: 'Review', status: 'under-review' },
+            { id: 'single-house', title: 'Single House Level', status: 'planned' },
+            { id: 'feeder-level', title: 'Feeder Level', status: 'planned' }
+        ]
+    },
+    {
+        id: 'outage-prediction',
+        title: 'Power Outage Prediction',
+        status: 'ongoing',
+        summary: 'Forecasting rare, large-scale weather-induced power outages for single and multiple counties.',
+        subtopics: [
+            { id: 'single-county', title: 'Single County', status: 'reviewed' },
+            { id: 'multi-county', title: 'Multi County', status: 'under-review' }
+        ]
+    },
+    {
+        id: 'heat-pump-identification',
+        title: 'Heat Pump Identification',
+        status: 'ongoing',
+        summary: 'Identifying heat-pump loads at the distribution-feeder level with data-driven methods, and building load profiles for transmission and distribution system models.',
+        subtopics: []
+    },
+    {
+        id: 'datacenter',
+        title: 'Datacenter',
+        status: 'under-review',
+        summary: 'Thermal-aware operation of high-performance computing environments.',
+        subtopics: []
+    },
+    {
+        id: 'hvac-control',
+        title: 'AI-Based HVAC Optimal Control',
+        status: 'completed',
+        summary: 'ANN-based HVAC control demonstrated at a U.S. manufacturing plant: 13.1% cooling and 25.2% heating energy savings.',
+        subtopics: []
+    }
+];
