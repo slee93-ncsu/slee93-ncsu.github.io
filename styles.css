@@ -1648,14 +1648,22 @@ footer {
 .project-title {
     font-weight: 600;
     font-size: 1.05rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
 }
 
-.meta-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.25rem;
+.fact-list {
+    padding-left: 1.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+
+.fact-list li {
+    margin-bottom: 0.35rem;
+}
+
+.fact-list b {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .chip {
@@ -1681,130 +1689,10 @@ footer {
     margin: 2.5rem 0 1rem;
 }
 
-.system-diagram {
-    display: grid;
-    grid-template-columns: 1.15fr auto 1fr auto 1fr auto 1fr;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.sys-box {
-    padding: 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    background-color: #fff;
-}
-
-.sys-box h4 {
-    font-size: 0.95rem;
-    margin-bottom: 0.4rem;
-}
-
-.sys-box h4 i {
-    color: var(--primary-strong);
-    margin-right: 0.3rem;
-}
-
-.sys-box p,
-.sys-box li {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    line-height: 1.5;
-}
-
-.sys-box ul {
-    padding-left: 1.1rem;
-}
-
-.sys-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-.sys-highlight {
-    background-color: #eaf4f9;
-    border-color: var(--accent-color);
-}
-
-.sys-meta {
-    margin-top: 0.5rem;
-    font-size: 0.78rem !important;
-    color: var(--primary-color) !important;
-}
-
-.sys-arrow {
-    color: var(--accent-color);
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-align: center;
-}
-
 .sys-note {
     margin-top: 0.8rem;
     font-size: 0.85rem;
     color: var(--light-text);
-}
-
-.site-facts {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.site-fact {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--border-color);
-}
-
-.site-fact i {
-    font-size: 1.3rem;
-    color: var(--primary-strong);
-    margin-bottom: 0.4rem;
-}
-
-.fact-value {
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.fact-label {
-    font-size: 0.82rem;
-    color: var(--light-text);
-    line-height: 1.4;
-}
-
-.compare-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
-}
-
-.compare-chart {
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 1.1rem 1.25rem;
-    background-color: #fff;
-}
-
-.compare-chart figcaption {
-    margin-bottom: 0.9rem;
-}
-
-.compare-title {
-    font-weight: 600;
-}
-
-.compare-period {
-    font-size: 0.85rem;
-    color: var(--light-text);
-    margin-left: 0.4rem;
 }
 
 .bar-row {
@@ -1845,27 +1733,6 @@ footer {
     text-align: right;
 }
 
-.compare-method {
-    display: block;
-    margin-top: 0.2rem;
-    font-size: 0.82rem;
-    color: var(--primary-color);
-}
-
-.compare-note {
-    margin-top: 0.4rem;
-    font-size: 0.8rem;
-    color: var(--light-text);
-    line-height: 1.5;
-}
-
-.compare-saving {
-    margin-top: 0.6rem;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--primary-color);
-}
-
 .callout {
     display: flex;
     gap: 0.9rem;
@@ -1876,32 +1743,8 @@ footer {
     background-color: #eaf4f9;
 }
 
-.callout i {
-    font-size: 1.3rem;
-    color: var(--primary-strong);
-    margin-top: 0.15rem;
-}
-
-@media (max-width: 992px) {
-    .system-diagram {
-        grid-template-columns: 1fr;
-    }
-
-    .sys-arrow {
-        transform: rotate(90deg);
-    }
-
-    .site-facts {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 576px) {
-    .compare-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .bar-row {
+        .bar-row {
         grid-template-columns: 6rem 1fr auto;
     }
 }
@@ -2103,4 +1946,154 @@ header {
 
 .nav-links a.nav-ext::after {
     display: none;
+}
+
+/* Figures on research pages (diagrams from project documents) */
+.doc-figure {
+    margin: 0;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.doc-figure img {
+    max-width: 100%;
+    width: 720px;
+    height: auto;
+}
+
+.doc-figure img.fig-medium {
+    width: 560px;
+}
+
+.doc-figure figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--light-text);
+    line-height: 1.55;
+    text-align: left;
+}
+
+/* Research pages: two text sizes only.
+   Body text 1rem; secondary text (captions, notes, chart labels) 0.875rem. */
+.sidebar-main .about-content,
+.sidebar-main .lead,
+.sidebar-main .project-title,
+.sidebar-main .fact-list,
+.sidebar-main .callout p,
+.sidebar-main .planned-note {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.sidebar-main .lead {
+    margin-bottom: 1rem;
+}
+
+.sidebar-main .project-title {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-main .doc-figure figcaption,
+.sidebar-main .result-kind,
+.sidebar-main .result-method,
+.sidebar-main .result-period,
+.sidebar-main .result-note,
+.sidebar-main .bar-label,
+.sidebar-main .bar-value {
+    font-size: 0.875rem;
+    line-height: 1.55;
+}
+
+.sidebar-main .sidebar-main /* Smaller figures */
+.doc-figure img {
+    width: 520px;
+}
+
+.doc-figure img.fig-medium {
+    width: 420px;
+}
+
+.sidebar-main .status-badge {
+    font-size: 0.875rem;
+}
+
+/* Results first: two highlighted result cards */
+.result-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.result-card {
+    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    background-color: #f3f9fc;
+    border: 1px solid #d6e9f2;
+}
+
+.result-kind {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.result-value {
+    font-size: 2.75rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--primary-color);
+    margin: 0.2rem 0 0.1rem;
+}
+
+.result-method {
+    color: var(--primary-color);
+    margin-bottom: 0.9rem;
+}
+
+.result-card .bar-row {
+    grid-template-columns: 7.5rem 1fr auto;
+}
+
+.result-period,
+.result-note {
+    color: var(--light-text);
+    margin-top: 0.4rem;
+}
+
+/* Process figures side by side, kept small */
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+}
+
+.process-grid .doc-figure img,
+.process-grid .doc-figure img.fig-medium {
+    width: 100%;
+    max-height: 280px;
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .result-grid,
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .result-card .bar-row {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "label value"
+            "track track";
+        row-gap: 0.25rem;
+    }
+
+    .result-card .bar-label { grid-area: label; }
+    .result-card .bar-value { grid-area: value; min-width: 0; }
+    .result-card .bar-track { grid-area: track; }
 }
