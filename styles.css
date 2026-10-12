@@ -1733,16 +1733,6 @@ footer {
     text-align: right;
 }
 
-.callout {
-    display: flex;
-    gap: 0.9rem;
-    align-items: flex-start;
-    margin-top: 2rem;
-    padding: 1rem 1.25rem;
-    border-radius: 10px;
-    background-color: #eaf4f9;
-}
-
 @media (max-width: 576px) {
         .bar-row {
         grid-template-columns: 6rem 1fr auto;
@@ -1982,7 +1972,6 @@ header {
 .sidebar-main .lead,
 .sidebar-main .project-title,
 .sidebar-main .fact-list,
-.sidebar-main .callout p,
 .sidebar-main .planned-note {
     font-size: 1rem;
     line-height: 1.7;
@@ -1999,8 +1988,7 @@ header {
 .sidebar-main .doc-figure figcaption,
 .sidebar-main .result-kind,
 .sidebar-main .result-method,
-.sidebar-main .result-period,
-.sidebar-main .result-note,
+.sidebar-main .result-details,
 .sidebar-main .bar-label,
 .sidebar-main .bar-value {
     font-size: 0.875rem;
@@ -2056,10 +2044,19 @@ header {
     grid-template-columns: 7.5rem 1fr auto;
 }
 
-.result-period,
-.result-note {
+.result-details {
+    margin-top: 0.6rem;
+    padding-left: 1.1rem;
     color: var(--light-text);
-    margin-top: 0.4rem;
+}
+
+.result-details li {
+    margin-bottom: 0.2rem;
+}
+
+.result-details b {
+    font-weight: 600;
+    color: var(--text-color);
 }
 
 /* Process figures side by side, kept small */
@@ -2067,13 +2064,27 @@ header {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
-    align-items: start;
+    align-items: stretch;
+}
+
+/* Equal-height boxes: same image area height, caption below */
+.process-grid .doc-figure {
+    display: flex;
+    flex-direction: column;
+}
+
+.process-grid .doc-figure > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 260px;
 }
 
 .process-grid .doc-figure img,
 .process-grid .doc-figure img.fig-medium {
-    width: 100%;
-    max-height: 280px;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
 }
 

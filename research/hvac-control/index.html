@@ -48,8 +48,11 @@
                             <div class="bar-track"><div class="bar bar-optimal" style="width: 86.9%"></div></div>
                             <span class="bar-value">80,403 kWh</span>
                         </div>
-                        <p class="result-period">Jul 11 – Aug 11, 2024 vs. weather-matched baseline days</p>
-                        <p class="result-note">Plant operating constraints ruled out full ANN control in summer.</p>
+                        <ul class="result-details">
+                            <li><b>Period:</b> Jul 11 – Aug 11, 2024</li>
+                            <li><b>Baseline:</b> weather-matched days from Jun – Sep 2023</li>
+                            <li><b>Note:</b> plant operating constraints ruled out full ANN control in summer</li>
+                        </ul>
                     </div>
                     <div class="result-card">
                         <p class="result-kind">Heating energy</p>
@@ -65,12 +68,12 @@
                             <div class="bar-track"><div class="bar bar-optimal" style="width: 74.8%"></div></div>
                             <span class="bar-value">11,217 kWh</span>
                         </div>
-                        <p class="result-period">Dec 23, 2024 – Jan 17, 2025 vs. weather-matched baseline days</p>
+                        <ul class="result-details">
+                            <li><b>Period:</b> Dec 23, 2024 – Jan 17, 2025 (weekends excluded)</li>
+                            <li><b>Baseline:</b> weather-matched winter days from 2023 – 2024</li>
+                            <li><b>Note:</b> a January 2025 winter storm sharply raised prediction error; extreme-weather data are needed in training</li>
+                        </ul>
                     </div>
-                </div>
-
-                <div class="callout">
-                    <p><b>Lesson learned:</b> a January 2025 winter storm sharply raised prediction error, showing that model-predictive building control needs extreme-weather data in training.</p>
                 </div>
 
                 <h3 class="block-title">How it works</h3>
