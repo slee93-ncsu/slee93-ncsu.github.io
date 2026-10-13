@@ -2500,3 +2500,50 @@ header {
     vertical-align: top;
     font-weight: 600;
 }
+
+/* Header artwork: the profile photo on the right, fading into the plain
+   header background through a soft gradient. On narrow screens the photo
+   becomes a small circle beside the name. */
+header {
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(720px, 64%);
+    background: url("assets/header-photo.jpg") right 30% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.05) 10%, rgba(0, 0, 0, 0.18) 20%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.68) 40%, rgba(0, 0, 0, 0.9) 48%, #000 55%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.05) 10%, rgba(0, 0, 0, 0.18) 20%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.68) 40%, rgba(0, 0, 0, 0.9) 48%, #000 55%);
+    pointer-events: none;
+}
+
+header .container {
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    header::after {
+        top: 1.75rem;
+        right: max(5%, 16px);
+        bottom: auto;
+        width: 76px;
+        height: 76px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+        background: url("assets/profile-avatar.jpg") center / cover no-repeat;
+        -webkit-mask-image: none;
+        mask-image: none;
+        z-index: 2;
+    }
+
+    header .profile-info {
+        padding-right: 92px;
+    }
+}
