@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review · Building–Grid Resiliency | Seungmin Lee</title>
-    <meta name="description" content="Review (Building–Grid Resiliency): research by Seungmin Lee.">
+    <meta name="description" content="A review of how building–grid restoration is modeled, evaluated, and used in decisions across 108 studies: research by Seungmin Lee.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="../../../styles.css?v=20261013k">
+    <link rel="stylesheet" href="../../../styles.css?v=20261013l">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -29,7 +29,61 @@
             <div class="container">
                 <p class="breadcrumb"><a href="../" data-same-tab>Building–Grid Resiliency</a></p>
                 <h2 class="section-title">Review <span class="status-badge status-under-review">Under review</span></h2>
-                <p class="planned-note">Details coming soon.</p>
+                <p class="project-title">Building–Grid Restoration as a System Trajectory: A Review of Modeling, Evaluation, and Decision Structures</p>
+                <p class="lead">Building–grid restoration is a dynamic process in which outage-conditioned building states, recovering demand, and grid operating constraints evolve together. Similar endpoint or aggregate outcomes can therefore conceal differences in recovery duration, sequence, physical stress, and remaining operating capability. This review examines how such information is represented, evaluated, and used in decision-making across 108 studies.</p>
+
+                <h3 class="block-title major">Restoration as a system trajectory</h3>
+                <h4 class="finding-title">Three physically linked mechanisms</h4>
+                <p class="body-text">Outage-conditioned building thermal states influence synchronized load reactivation and cold load pickup (CLPU), and the resulting demand evolves within feeder, voltage, and equipment-loading constraints.</p>
+                <figure class="doc-figure">
+                    <a href="img/restoration-dynamics.png"><img class="fig-wide" src="img/restoration-dynamics.png" alt="Two stacked panels over the stages normal condition, power outage, re-energization (CLPU), restoration, and post-restoration. Upper panel: indoor temperature deviation from setpoint rises during the outage, higher for a building with a shorter thermal time constant, and decays after re-energization, more slowly for a longer time constant. Lower panel: power demand drops to zero during the outage, spikes outside the admissible region at re-energization, and later shows a thermally driven secondary activation near the admissible boundary." loading="lazy"></a>
+                    <figcaption>Conceptual representation of building–grid restoration dynamics: outage-induced indoor-temperature evolution (upper) and the associated aggregate load response and its interaction with grid operating limits (lower).</figcaption>
+                </figure>
+
+                <h3 class="block-title major">Findings</h3>
+                <p class="body-text">Each study was classified on four TCED dimensions: <b>T</b>ime Continuity, Cross-Domain <b>C</b>oupling, <b>E</b>valuation Paradigm, and <b>D</b>ecision Structure. The levels are not a hierarchy of study quality.</p>
+                <div class="table-wrap">
+                    <table class="data-table tced-table">
+                        <thead>
+                            <tr><th>Dimension</th><th>Level 0</th><th>Level 1</th><th>Level 2</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Time continuity</td><td>Static snapshot <span class="count">11</span></td><td>Ordered stages <span class="count">19</span></td><td>Propagated state <span class="count">78</span></td></tr>
+                            <tr><td>Cross-domain coupling</td><td>Single domain <span class="count">96</span></td><td>One-way transfer <span class="count">10</span></td><td>Reciprocal feedback <span class="count">2</span></td></tr>
+                            <tr><td>Evaluation paradigm</td><td>Pointwise <span class="count">7</span></td><td>Endpoint or aggregate <span class="count">78</span></td><td>Path-sensitive <span class="count">23</span></td></tr>
+                            <tr><td>Decision structure</td><td>Predetermined plan <span class="count">97</span></td><td>Online replanning <span class="count">5</span></td><td>Closed-loop policy <span class="count">6</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="chart-caption">Number of the 108 reviewed studies at each TCED level.</p>
+
+                <h4 class="finding-title"><span class="finding-num">1</span>Dynamic modeling did not imply path-sensitive evaluation</h4>
+                <p class="body-text">Among 78 studies that propagated restoration states over time, 55 used pointwise or aggregate evaluation without retaining an explicit path characteristic.</p>
+
+                <h4 class="finding-title"><span class="finding-num">2</span>No study combined path-sensitive evaluation with adaptive decisions</h4>
+                <p class="body-text">All 23 studies with path-sensitive evaluation used predetermined plans or fixed rules, while the 11 studies using state-informed replanning or closed-loop policies updated actions mainly from current states and pointwise feasibility conditions rather than violation duration, accumulated exposure, or trajectory history.</p>
+
+                <h3 class="block-title major">Takeaway</h3>
+                <h4 class="finding-title">When restoration-path information matters</h4>
+                <figure class="doc-figure">
+                    <a href="img/evaluation-paradigms.png"><img class="fig-wide" src="img/evaluation-paradigms.png" alt="The same thermal and electrical restoration trajectories annotated with three evaluation types. Upper panel: the area above a thermal threshold is labeled E1 integrated thermal exposure. Lower panel: the demand peak at re-energization is labeled E1 peak value, a brief excursion above the operational limit is labeled E0 pointwise violation, and the varying gap below the limit during restoration is labeled E2 operating-margin evolution." loading="lazy"></a>
+                    <figcaption>Information retained by E0, E1, and E2 assessments applied to the same thermal and electrical restoration trajectories. E0 records pointwise or categorical conditions, E1 reports extrema or aggregate outcomes, and E2 retains an explicit path characteristic.</figcaption>
+                </figure>
+                <p class="body-text">Path information becomes relevant to evaluation when:</p>
+                <ul class="fact-list">
+                    <li>prior conditions remain embedded in later states,</li>
+                    <li>duration or sequence rather than magnitude changes a consequence, or</li>
+                    <li>the preceding path alters remaining capability.</li>
+                </ul>
+                <p class="body-text">To influence decisions, such information must also be available or predictable when candidate actions are evaluated and capable of changing the selected action.</p>
+
+                <h3 class="block-title major">Study details</h3>
+                <ul class="fact-list">
+                    <li><b>Corpus:</b> 108 studies from the Web of Science Core Collection and a supplementary Google Scholar search · English-language publications, 2016–2025</li>
+                    <li><b>Coding:</b> two authors independently classified all studies on the four TCED dimensions; disagreements were resolved by consensus</li>
+                    <li><b>Scope:</b> distribution-system restoration processes in which building interactions are significant</li>
+                </ul>
+                <div class="related-publications publications-list" data-pubs="P4"></div>
             </div>
         </section>
     </main>
@@ -41,8 +95,8 @@
         </div>
     </footer>
 
-    <script src="../../../data/research-topics.js?v=20261013k"></script>
-    <script src="../../../script.js?v=20261013k"></script>
+    <script src="../../../data/research-topics.js?v=20261013l"></script>
+    <script src="../../../script.js?v=20261013l"></script>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>

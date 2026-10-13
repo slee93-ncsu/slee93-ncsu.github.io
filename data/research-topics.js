@@ -9,7 +9,7 @@ window.RESEARCH_TOPICS = [
         status: 'ongoing',
         summary: 'How buildings and distribution grids behave through weather-driven outages and recovery, from a single house to the feeder level.',
         subtopics: [
-            { id: 'review', title: 'Review', status: 'under-review' },
+            { id: 'review', title: 'Review', status: 'under-review', summary: 'A review of 108 studies on how building–grid restoration is modeled, evaluated, and used in decisions, using the TCED lens.' },
             { id: 'single-house', title: 'Single House Level', status: 'planned' },
             { id: 'feeder-level', title: 'Feeder Level', status: 'planned' }
         ]
