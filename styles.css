@@ -2548,20 +2548,14 @@ header .container {
     }
 }
 
-/* TCED table: level labels with study counts */
+/* TCED table: study counts per level */
 .tced-table td:first-child {
     font-weight: 600;
 }
 
-.tced-table .count {
-    display: inline-block;
-    min-width: 2rem;
-    margin-left: 0.35rem;
-    padding: 0 0.4rem;
-    border-radius: 999px;
-    background-color: #eaf4f9;
-    color: var(--primary-color);
-    font-size: 0.8rem;
-    font-weight: 600;
+.tced-table th:not(:first-child),
+.tced-table td:not(:first-child) {
     text-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
