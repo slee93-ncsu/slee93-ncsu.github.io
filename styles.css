@@ -2501,24 +2501,12 @@ header {
     font-weight: 600;
 }
 
-/* Header artwork: a faint grid-network pattern behind the profile text and
-   the profile photo on the right, fading into the header background.
-   On narrow screens the photo becomes a small circle beside the name. */
+/* Header artwork: the profile photo on the right, fading into the plain
+   header background through a soft gradient. On narrow screens the photo
+   becomes a small circle beside the name. */
 header {
     position: relative;
     overflow: hidden;
-}
-
-header::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22180%22%20height%3D%22120%22%20viewBox%3D%220%200%20180%20120%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%232C7A9E%22%20stroke-width%3D%221%22%3E%3Cpath%20d%3D%22M0%2030H60L90%2060H180M60%2030V0M90%2060V120M130%2060L150%2030H180M20%20120V90L40%2070H90%22/%3E%3C/g%3E%3Cg%20fill%3D%22%232C7A9E%22%3E%3Ccircle%20cx%3D%2260%22%20cy%3D%2230%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%2290%22%20cy%3D%2260%22%20r%3D%222.5%22/%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3Ccircle%20cx%3D%2240%22%20cy%3D%2270%22%20r%3D%222%22/%3E%3Ccircle%20cx%3D%22130%22%20cy%3D%2260%22%20r%3D%222%22/%3E%3C/g%3E%3C/svg%3E");
-    background-size: 180px 120px;
-    opacity: 0.09;
-    -webkit-mask-image: linear-gradient(to right, #000 0%, #000 40%, transparent 70%);
-    mask-image: linear-gradient(to right, #000 0%, #000 40%, transparent 70%);
-    pointer-events: none;
 }
 
 header::after {
@@ -2527,10 +2515,11 @@ header::after {
     top: 0;
     right: 0;
     bottom: 0;
-    width: 46%;
-    background: url("assets/header-photo.jpg") center 22% / cover no-repeat;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 45%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 45%);
+    aspect-ratio: 1411 / 762;
+    max-width: 62%;
+    background: url("assets/header-photo.jpg") right center / cover no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.3) 17%, rgba(0, 0, 0, 0.6) 26%, rgba(0, 0, 0, 0.85) 34%, #000 42%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.3) 17%, rgba(0, 0, 0, 0.6) 26%, rgba(0, 0, 0, 0.85) 34%, #000 42%);
     pointer-events: none;
 }
 
@@ -2540,17 +2529,14 @@ header .container {
 }
 
 @media (max-width: 768px) {
-    header::before {
-        -webkit-mask-image: none;
-        mask-image: none;
-    }
-
     header::after {
         top: 1.75rem;
         right: max(5%, 16px);
         bottom: auto;
         width: 76px;
         height: 76px;
+        max-width: none;
+        aspect-ratio: auto;
         border: 3px solid #fff;
         border-radius: 50%;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
