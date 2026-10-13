@@ -37,12 +37,5 @@ window.RESEARCH_TOPICS = [
         status: 'under-review',
         summary: 'Node-level inlet temperature in a GPU-intensive data center: persistent spatial differences and short-term changes.',
         subtopics: []
-    },
-    {
-        id: 'hvac-control',
-        title: 'AI-Based HVAC Optimal Control',
-        status: 'completed',
-        summary: 'ANN-based HVAC control demonstrated at a U.S. manufacturing plant: 13.1% cooling and 25.2% heating energy savings.',
-        subtopics: []
     }
 ];
