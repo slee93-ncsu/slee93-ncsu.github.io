@@ -87,13 +87,18 @@
     "number": "C13",
     "title": "Forecasting High-Impact, Low-Probability Power Outages with Temporal Fusion Transformers: A Case Study of Wake County",
     "authors": "<strong><u>Seungmin Lee</u></strong>, Juwan Ha, Yujin Kim, Soolyeon Cho",
-    "venue": "2026 ASHRAE Winter Conference, Las Vegas, NV, USA",
+    "venue": "2026 ASHRAE Winter Conference, Las Vegas, NV, USA · Paper LV-26-C154",
     "type": "conference",
     "isFirstAuthor": true,
     "tags": [
       {
         "text": "ASHRAE 2026",
         "class": "venue-tag"
+      },
+      {
+        "text": "DOI",
+        "class": "code-tag",
+        "link": "https://doi.org/10.63044/w26lee154"
       }
     ]
   },

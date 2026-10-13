@@ -2563,3 +2563,10 @@ header .container {
 .about-content p + p {
     margin-top: 1rem;
 }
+
+.copyright-note {
+    margin-top: 1.25rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--light-text);
+}

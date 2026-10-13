@@ -35,14 +35,7 @@ window.RESEARCH_TOPICS = [
         id: 'datacenter',
         title: 'Data Center Thermal Analysis',
         status: 'under-review',
-        summary: "Which servers in a GPU data center run warm, and why: location in the rack explains most of the difference, while each node's recent temperature best predicts the next few minutes.",
-        subtopics: []
-    },
-    {
-        id: 'hvac-control',
-        title: 'AI-Based HVAC Optimal Control',
-        status: 'completed',
-        summary: 'ANN-based HVAC control demonstrated at a U.S. manufacturing plant: 13.1% cooling and 25.2% heating energy savings.',
+        summary: 'Node-level inlet temperature in a GPU-intensive data center: persistent spatial differences and short-term changes.',
         subtopics: []
     }
 ];
