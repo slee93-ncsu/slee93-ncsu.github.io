@@ -6,7 +6,7 @@
     <title>Seungmin Lee</title>
     <meta name="description" content="Seungmin Lee, Ph.D. student at North Carolina State University researching building–grid resilience, machine learning for energy systems, and building electrification.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    <link rel="stylesheet" href="styles.css?v=20261013n">
+    <link rel="stylesheet" href="styles.css?v=20261013o">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -45,11 +45,9 @@
             <div class="container">
                 <h2 class="section-title">Biography</h2>
                 <div class="about-content">
-                    <p>I am a Ph.D. student in Design (Building Energy Systems) at <a href="https://www.ncsu.edu/">North Carolina State University</a>, advised by <b>Prof. Soolyeon Cho</b>, and an M.S. student in Electrical and Computer Engineering. I am currently a Graduate Intern with the Grid Automation and Controls Group at the National Laboratory of the Rockies (NLR).<br><br>
-
-                    My research studies how buildings and electric grids interact under normal, extreme, and recovery conditions. I integrate building and distribution-system models through co-simulation and develop data-driven methods for forecasting weather-induced power outages, understanding restoration dynamics, and identifying heat-pump loads at the distribution-feeder level.<br><br>
-
-                    Before my Ph.D., I worked as a researcher at the Korea Research Institute of Eco-Environmental Architecture and the Korea Institute of Energy Research. There I led energy performance assessments of buildings and contributed to national research on zero-energy building policy and geothermal heat pump design.</p>
+                    <p>At <a href="https://www.ncsu.edu/">North Carolina State University</a>, I am pursuing a Ph.D. in Design (Building Energy Systems), advised by <b>Prof. Soolyeon Cho</b>, and concurrently an M.S. in Electrical and Computer Engineering. I am also a Graduate Intern in the Grid Automation and Controls Group at the <b>National Laboratory of the Rockies (NLR)</b>.</p>
+                    <p>My research focuses on <b>how buildings and electric grids interact during extreme weather</b>: forecasting weather-induced power outages, modeling building–grid restoration, and identifying heat-pump loads at the distribution-feeder level.</p>
+                    <p>Previously, I led building energy performance assessments as a researcher at the Korea Research Institute of Eco-Environmental Architecture and the Korea Institute of Energy Research.</p>
                 </div>
             </div>
         </section>
@@ -60,26 +58,27 @@
                 <div class="research-areas">
                     <div class="research-area">
                         <i class="fas fa-bolt"></i>
-                        <h3>Building–Grid Resilience</h3>
+                        <h3>Building–Grid Restoration</h3>
                         <ul class="research-list">
-                            <li><strong>Outage Forecasting:</strong> Forecasting rare, large-scale weather-induced power outages with deep time-series models.</li>
-                            <li><strong>Restoration Dynamics:</strong> Co-simulating buildings and distribution grids to study recovery, thermal behavior, and cold load pickup.</li>
+                            <li><strong><a href="research/building-grid-resiliency/review/" data-same-tab>Restoration as a System Trajectory</a>:</strong> How restoration is modeled, evaluated, and used in decisions across 108 studies.</li>
+                            <li><strong>House- and Feeder-Level Recovery:</strong> Co-simulating buildings and distribution grids to study thermal recovery and cold load pickup.</li>
                         </ul>
                     </div>
                     <div class="research-area">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Machine Learning for Energy Systems</h3>
+                        <i class="fas fa-cloud-bolt"></i>
+                        <h3>Power Outage Prediction</h3>
                         <ul class="research-list">
-                            <li><strong>Time-Series Analytics:</strong> Data-driven modeling for power systems and building energy applications.</li>
-                            <li><strong>Grid-Interactive Buildings:</strong> Learning-based modeling and control of building loads and HVAC systems.</li>
+                            <li><strong><a href="research/outage-prediction/single-county/" data-same-tab>Rare, Large-Scale Outages</a>:</strong> Forecasting weather-induced outages with Temporal Fusion Transformers and quantile forecasting.</li>
+                            <li><strong><a href="research/outage-prediction/multi-county/" data-same-tab>Multi-County Learning</a>:</strong> When pooling data across counties helps, and when it hurts.</li>
                         </ul>
                     </div>
                     <div class="research-area">
-                        <i class="fas fa-plug"></i>
-                        <h3>Building Electrification</h3>
+                        <i class="fas fa-building"></i>
+                        <h3>Data-Driven Building Energy Systems</h3>
                         <ul class="research-list">
-                            <li><strong>Heat-Pump Load Identification:</strong> Identifying heat-pump loads at the distribution-feeder level from electricity and weather data.</li>
-                            <li><strong>Distribution Planning:</strong> Load profiles for integration into transmission and distribution system models.</li>
+                            <li><strong><a href="research/heat-pump-identification/" data-same-tab>Heat-Pump Identification</a>:</strong> Identifying heat-pump loads at the distribution-feeder level.</li>
+                            <li><strong><a href="research/datacenter/" data-same-tab>Data Center Thermal Analysis</a>:</strong> Where GPU nodes run warm and how their temperature changes.</li>
+                            <li><strong><a href="research/hvac-control/" data-same-tab>AI-Based HVAC Control</a>:</strong> ANN-based optimal control demonstrated at a U.S. manufacturing plant.</li>
                         </ul>
                     </div>
                 </div>
@@ -292,7 +291,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=20261013n"></script>
+    <script src="script.js?v=20261013o"></script>
     <script>
         // Update copyright year
         document.getElementById('current-year').textContent = new Date().getFullYear();
