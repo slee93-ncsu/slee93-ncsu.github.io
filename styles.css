@@ -2515,11 +2515,10 @@ header::after {
     top: 0;
     right: 0;
     bottom: 0;
-    aspect-ratio: 1411 / 762;
-    max-width: 62%;
-    background: url("assets/header-photo.jpg") right center / cover no-repeat;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.3) 17%, rgba(0, 0, 0, 0.6) 26%, rgba(0, 0, 0, 0.85) 34%, #000 42%);
-    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.08) 8%, rgba(0, 0, 0, 0.3) 17%, rgba(0, 0, 0, 0.6) 26%, rgba(0, 0, 0, 0.85) 34%, #000 42%);
+    width: min(720px, 64%);
+    background: url("assets/header-photo.jpg") right 30% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.05) 10%, rgba(0, 0, 0, 0.18) 20%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.68) 40%, rgba(0, 0, 0, 0.9) 48%, #000 55%);
+    mask-image: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.05) 10%, rgba(0, 0, 0, 0.18) 20%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0.68) 40%, rgba(0, 0, 0, 0.9) 48%, #000 55%);
     pointer-events: none;
 }
 
@@ -2535,8 +2534,6 @@ header .container {
         bottom: auto;
         width: 76px;
         height: 76px;
-        max-width: none;
-        aspect-ratio: auto;
         border: 3px solid #fff;
         border-radius: 50%;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
