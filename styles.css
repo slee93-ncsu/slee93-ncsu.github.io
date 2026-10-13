@@ -1834,7 +1834,7 @@ footer {
 
 /* Current page in the research side menu */
 .side-nav .nav-links a.current {
-    color: var(--primary-color);
+    color: #6B5CA5;
     font-weight: 600;
 }
 
@@ -1842,6 +1842,7 @@ footer {
     .side-nav .nav-links a.current::after {
         width: 3px;
         height: 100%;
+        background-color: #6B5CA5;
     }
 }
 
