@@ -5,7 +5,7 @@
 window.RESEARCH_TOPICS = [
     {
         id: 'building-grid-resiliency',
-        title: 'Building–Grid Resiliency',
+        title: 'Building–Grid Restoration',
         status: 'ongoing',
         summary: 'How buildings and distribution grids behave through weather-driven outages and recovery, from a single house to the feeder level.',
         subtopics: [
